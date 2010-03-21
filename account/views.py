@@ -37,27 +37,24 @@ def signup(request):
 		# Submission 
 			suForm=SignupForm(request.POST)
 			if suForm.is_valid():
-			        user=User.objects.create_user(request.POST['email'],request.POST['email'],request.POST['password1']) #create a User with the given name and password and email
+				pk=len(User.objects.all()).__str__()
+				username=pk.join([request.POST['first_name'],request.POST['last_name']])
+			        user=User.objects.create_user(username=username,email=request.POST['email'],password=request.POST['password1']) #create a User with the given name as username and password 
                                 user.first_name=request.POST['first_name']
                                 user.last_name=request.POST['last_name']
                                 user.save()
                                 #save the other credentials of the Person
                                 person = account_models.person()
                                 person.user_ptr = user
-                                person.first_name = request.POST['first_name']
-                                person.last_name = request.POST['last_name']
-                                person.email = request.POST['email']
-                                person.password = request.POST['password1']
                                 person.sex = request.POST['sex']
                                 person.occupation = request.POST['occupation']
                                 person.phno = request.POST['phno']
                                 person.institution = request.POST['institution']
                                 person.address = request.POST['address']
                                 person.pin = request.POST['pin']
-                                person.save()
-                                user.save()	
+				person.save()
                                 # log him in and go to home page
-                                logged_in_user = authenticate(username=request.POST['username'],password=request.POST['password1'])
+                                logged_in_user = authenticate(username=username,password=request.POST['password1'])
 				if logged_in_user is not None:
 					login(request,logged_in_user)
                                 return HttpResponseRedirect("/")        
@@ -70,7 +67,7 @@ def signup(request):
 
 def settings(request):
         if request.user.is_authenticated():
-		user_data=User.objects.get(
+	#	user_data=User.objects.get(
 		return render_to_response("account_settings.html")
 	else:
 		return render_to_response("account_login_register.html",{"reg_form":SignupForm,"login_form":LoginForm()})

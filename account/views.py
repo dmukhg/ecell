@@ -70,9 +70,10 @@ def signup(request):
 
 def settings(request):
         if request.user.is_authenticated():
+		user_data=User.objects.get(
 		return render_to_response("account_settings.html")
 	else:
-		return render_to_response("account_login_fields.html")
+		return render_to_response("account_login_register.html",{"reg_form":SignupForm,"login_form":LoginForm()})
 
 def logout(request):
         if request.user.is_authenticated():	

@@ -1,0 +1,38 @@
+body{
+	margin:0;
+	background-color: #ffffff;
+}
+#top_nav-wrapper{
+	background-image: url('/site_media/im/topnav.jpg');
+	width:100%;
+	height:40px;
+}
+.page{
+	width:900px;
+	margin:auto;
+}
+#top_nav{
+	color:white;
+	padding-top:7px;
+}
+#tabs{
+	float:right;
+}
+a.topTab{
+	font-family:sans;
+	font-size:10pt;
+	font-weight:none;
+	padding-left:40px;
+	color:#ffffff;
+	text-decoration:none;
+}
+a.topTab:hover{
+	color: #ff9900;
+}
+#mast_head-wrapper{
+	background: url('/site_media/im/mast_head.jpg');
+	width:100%;
+	background-position: center;
+	height:180px;
+}
+

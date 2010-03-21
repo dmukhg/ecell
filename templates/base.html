@@ -1,0 +1,32 @@
+<html>
+	<head>
+		<title>Entrepreneurship Cell | IIT Kharagpur</title>
+		<link rel=stylesheet href="/site_media/css/base.css">
+		{% block head %}{% endblock %}
+	</head>
+	<body>
+		<div id="top_nav-wrapper">
+			<div id="top_nav" class="page">
+				Entrepreneurship Cell
+				<div id=tabs>
+					{% for tab in tabsList %}
+					<a href="/article/{{ tab.url }}/" class=topTab>{{ tab.name }}</a>
+					{% endfor %}
+				</div>
+			</div>
+			
+		</div>
+		<div id="mast_head-wrapper">
+			<div id="mast_head" class="page">
+				{% block masthead %}
+				{% endblock %}
+			</div>
+		</div>
+		<div id="content-wrapper">
+			<div id="content" class="page">
+				{% block content %}
+				{% endblock %}
+			</div>
+		</div>
+	</body>
+</html>

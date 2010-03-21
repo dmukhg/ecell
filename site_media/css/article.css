@@ -1,0 +1,18 @@
+#content{
+	color:#444444;
+	font-size:11pt;
+	font-family:sans;
+	font-weight:none;
+}
+#sidebar{
+	float:left;
+	height:500px;
+	width:250px;
+	background-color:#eeeeff;
+	border-right:1px solid #ccccff;
+}
+#content_area{
+	float:left;
+	padding:7px;
+	width:635px;
+}

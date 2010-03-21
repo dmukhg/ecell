@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel=stylesheet href="/site_media/css/article.css">
+{% endblock %}
+
+{% block masthead %}
+{{ article }}
+{% endblock %}
+
+{% block content %}
+<div id=sidebar>amazin sidebar</div>
+<div id=content_area>
+{{ article.content|safe  }}
+</div>
+{% endblock %}

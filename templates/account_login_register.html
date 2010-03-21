@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block head %}
+<style>
+.error{
+	font-size:8pt;
+	color:#dd0000;
+	font-family:sans;
+	background-color:#eecccc;
+	border-top:1px solid #dd0000;
+}
+</style>
+{% endblock %}
+{% block content %}
+<div style="float:left;padding:10px;padding-top:20px;padding-right:30px">
+	<h2>Login...</h2>
+<form method=post action="/account/">
+<table cellspacing=3 cellpadding=0 border=0>
+	{% if bad %}
+	<tr><td colspan=2 style="background-color:#ff9999"> Please enter a valid user name </td></tr>
+	{% endif %}
+        {% for element in login_form %}
+	    <tr><td  {% if element.errors %}class=error {% endif %}>{{ element.label_tag }}</td><td  {% if element.errors %}class=error {% endif %}>{{ element }}</td><td  {% if element.errors %}class=error {% endif %}>{{element.errors.as_text}}</td></tr>
+        {% endfor %}
+        <tr><td colspan=2><input type="submit" value="Register">&nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" value="Clear"></td></tr>
+</table>
+</form>
+</div>
+
+<div style="border-left:1px solid #00aaff;float:left;">
+	<h2>Or Register with us...</h2>
+<form method="POST" action="/account/signup/">
+    <table style="font-family:sans;font-size:10pt;" width=580px cellspacing=0 cellpadding=4 border=0>
+	    {% for element in reg_form %}
+	    <tr><td  {% if element.errors %}class=error {% endif %}>{{ element.label_tag }}</td><td  {% if element.errors %}class=error {% endif %}>{{ element }}</td><td  {% if element.errors %}class=error {% endif %}>{{element.errors.as_text}}</td></tr>
+	    {% endfor %}
+	    <tr><td colspan=2><input type="submit" value="Register">&nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" value="Clear"></td></tr>
+    </table>
+</form>
+<div>
+{% endblock %}

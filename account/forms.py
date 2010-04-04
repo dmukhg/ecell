@@ -42,10 +42,13 @@ class LoginForm(forms.Form):
      password=forms.CharField(max_length=25,widget=forms.PasswordInput,label='Password')
 
 
-class TeamCreationForm(forms.Form):
-    teamname=forms.CharField(max_length=25)
-    competition=forms.ChoiceField()
-    member_name=forms.CharField(max_length=25)
+class AccountSettingsForm(forms.Form):
+	first_name=forms.CharField(max_length = 25, label = 'First Name')
+	last_name= forms.CharField(max_length = 25, label = 'Last Name')
+	sex = forms.ChoiceField(choices=sex_choice)
+	occupation=forms.ChoiceField(choices=occupation_choice)
+	phno=forms.IntegerField(label='Phone Number')
+	institution=forms.CharField(max_length = 150 , label="Institution")
+	address=forms.CharField(max_length= 250, widget=forms.Textarea)
+	pin=forms.CharField(max_length=10)
 
-class FileUploadForm(forms.Form):
-    file=forms.FileField()

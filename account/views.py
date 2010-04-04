@@ -67,8 +67,21 @@ def signup(request):
 
 def settings(request):
         if request.user.is_authenticated():
-	#	user_data=User.objects.get(
-		return render_to_response("account_settings.html")
+		user_current=User.objects.get(email=request.user.email)
+		person_current=account_models.person.objects.get(user_ptr=user_current.pk)
+		user_data={}
+		user_data['first_name']=user_current.first_name
+		user_data['last_name']=user_current.last_name
+		user_data['sex']=person_current.sex
+		user_data['occupation']=person_current.occupation
+		user_data['phno']=person_current.phno
+		user_data['institution']=person_current.institution
+		user_data['address']=person_current.address
+		user_data['pin']=person_current.pin
+
+		pool=AccountSettingsForm(user_data)
+		
+		return render_to_response("account_settings.html",{'pool':pool})
 	else:
 		return render_to_response("account_login_register.html",{"reg_form":SignupForm,"login_form":LoginForm()})
 
@@ -78,3 +91,11 @@ def logout(request):
 		return HttpResponseRedirect("/")
 	else:
 		return render_to_response("message.html",{"message":"You are not authorised to be here"})
+
+                    
+def change(request):
+	if request.user.is_authenticated() and request.method == "POST":
+                field=request.POST['field']
+	        # add a automatic updater about 7 lines. Not a field by field parser
+	else:
+		return render_to_response("message.html", {"message":"You are not authorised to be here. Go back to where you came from."})

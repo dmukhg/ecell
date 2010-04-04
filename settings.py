@@ -79,4 +79,5 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'ecell2.conman',
     'ecell2.account',
+    'ecell2.upload',
 )

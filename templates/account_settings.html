@@ -1,4 +1,36 @@
 {% extends "base.html" %}
+{% block head %}
+<link rel=stylesheet href="/site_media/css/account_settings.css">
+<script type=text/javascript language=javascript src="/site_media/js/jquery-1.4.2.js">
+</script>
+<script type=text/javascript language=javascript>
+function doSlide(what){
+    $("#"+what+"_current").slideUp('slow',function (){});
+    $("#"+what+"_widget").slideDown('slow',function (){}); 
+}
+
+</script>
+{% endblock %}
+
 {% block content %}
-Settings
+    {% for w in pool %}
+    <div class=set_container id="{{ w.name }}_container">
+	    <div class=set_header id="{{ w.name}}_header">
+		    {{ w.label }}
+	    </div>
+	    <div class=set_widget id="{{ w.name}}_widget_container">
+		    <div style="display:none;" id="{{ w.name }}_widget">
+	                <form action="/account/change" method=POST>
+		            {{ w }}
+			    <input type=hidden name=field value="{{ w.name }}">
+            		    <input type=submit value=Done>
+	                </form>
+	            </div>
+		    <div id="{{ w.name }}_current">
+			    <span id="{{ w.name }}_selector" style="cursor:hand;float:right;font-size:8pt;background:#ff9900;color:#ffffff;"><a href="javascript:doSlide('{{w.name}}')">Change</a></span>
+	            {{ w.data }}
+	            </div>
+	    </div>
+    </div>
+    {% endfor %}
 {% endblock %}

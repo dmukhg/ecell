@@ -13,6 +13,7 @@ urlpatterns = patterns('',
      (r'^signup/?$', signup),
      (r'^logout/?$', logout),
      (r'^settings/?$', settings),
+     (r'^change/?$', change),
      #(r'^signin/?', signin),
 
    # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 

@@ -1,0 +1,18 @@
+.set_header{
+	background:#00aaff;
+	margin-top:5px;
+	border-top:1px solid #0066ff;
+	border-left:1px solid #0066ff;
+	border-right:1px solid #0066ff;
+	border-bottom:none;
+	font-weight:bold;
+	font-size:10pt;
+}
+.set_widget{
+	background:#eeeeee;
+	border-bottom:1px solid #0066ff;
+	border-left:1px solid #0066ff;
+	border-right:1px solid #0066ff;
+	border-top:none;
+        padding:4px;	
+}

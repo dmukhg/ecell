@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block head %}
+<style>
+.error{
+	font-size:8pt;
+	color:#dd0000;
+	font-family:sans;
+	background-color:#eecccc;
+	border-top:1px solid #dd0000;
+}
+</style>
+{% endblock %}
+{% block content %}
+<div style="float:left" >
+    <h2>Upload</h2> 
+    <form method="POST" action="" enctype="multipart/form-data">
+    <table cellspacing=0 cellpadding=4 border=0> 
+        {% for element in form %}
+        <tr><td {% if element.errors %}class=error {% endif %}>{{ element.label_tag }}</td><td  {% if element.errors %}class=error {% endif %}>{{ element }}</td><td  {% if element.errors %}class=error {% endif %}>{{element.errors.as_text}}</td></tr>
+	    {% endfor %}
+        <tr><td colspan=2><input type="submit" value="upload"></td></tr>
+    </table>
+</form>
+{% endblock %}

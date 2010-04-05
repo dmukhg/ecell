@@ -4,4 +4,5 @@
 */*~
 */*.swp
 */*pyc
-
+site_media/uploads
+site_media/uploads/*

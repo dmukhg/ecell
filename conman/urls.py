@@ -10,7 +10,7 @@ from ecell2.conman.views import *
 urlpatterns = patterns('',
     # Example:
      (r'^$', home),
-     (r'^([^/]+)/?$',article),
+    # (r'^([^/]+)/?$',article),
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
     # to INSTALLED_APPS to enable admin documentation:
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),

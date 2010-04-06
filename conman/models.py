@@ -4,7 +4,7 @@ class Images(models.Model):
     '''A table of all the images the organisation has'''
     file=models.ImageField(upload_to="/site_media/images/upload")
     date = models.DateTimeField()
-    
+  
     def __unicode__(self):
         return self.file;
 
@@ -46,46 +46,23 @@ class Entrepreneur (models.Model):
     profile=models.TextField()#the profile of the entrepreneur
     image=models.OneToOneField(Images)#an associated image of the startup
     date = models.DateTimeField()
-    
+
     def __unicode__(self):
         return self.name
 
     class Meta:
         db_table="featured_entrepreneur"
 
-class Resources(models.Model):
-    '''A table of all the informative resources posessed by the organisation'''
-    file=models.FileField(upload_to="/site_media/content")
-    date = models.DateTimeField()
+class Sector(models.Model):
+    '''A collection of all categories to be reported in the top nav bar to implement a hierarchy of sorts'''
+    name = models.CharField(max_length = 50 , unique = True)
+    display_order = models.SmallIntegerField()
+    url = models.CharField(max_length = 50 , unique = True)
+    image = models.OneToOneField(Images,null=True)
+    parent = models.ForeignKey("self",null=True)
 
     def __unicode__(self):
-        return self.name;
+        return self.name
 
     class Meta:
-        db_table="resources" 
-	
-class Section(models.Model):
-	'''A collection of all categories to be reported in the top nav bar'''
-	name = models.CharField(max_length = 50 , unique = True)
-	url = models.CharField(max_length = 50 , unique = True)
-	order = models.SmallIntegerField(unique = True)
-	image = models.OneToOneField(Images,null=True)
-#	ddfollowers = models.ManyToManyField(
-	
-	def __unicode__(self):
-		return self.name
-
-	class Meta:
-		pass
-
-class Article(models.Model):
-	'''An article'''
-	title = models.SlugField()
-	url = models.CharField(max_length=100)
-        content = models.TextField()
-	section = models.ForeignKey(Section)
-	frontpage = models.BooleanField()
-	date = models.DateField()
-
-	def __unicode__(self):
-		return self.title
+        db_table="sector"

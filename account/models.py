@@ -15,7 +15,7 @@ class person(models.Model):
      address=models.CharField(max_length=250)
      pin=models.CharField(max_length=10)
      website=models.URLField(verify_exists=True,null=True,blank=True)#url of the website of the user
-     follows=models.ManyToManyField(Article)
+#     follows=models.ManyToManyField(Article)
 
      def __unicode__(self):
 	             return "%s %s %s" % (self.first_name, self.last_name, self.institution) 

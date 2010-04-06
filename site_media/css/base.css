@@ -3,9 +3,9 @@ body{
 	background-color: #ffffff;
 }
 #top_nav-wrapper{
-	background-image: url('/site_media/im/topnav.jpg');
 	width:100%;
-	height:40px;
+    padding-top:0;
+	height:64px;
 }
 .page{
 	width:900px;
@@ -13,26 +13,26 @@ body{
 }
 #top_nav{
 	color:white;
-	padding-top:7px;
 }
 #tabs{
+    padding-top:17px;
 	float:right;
 }
 a.topTab{
 	font-family:sans;
 	font-size:10pt;
 	font-weight:none;
-	padding-left:40px;
-	color:#ffffff;
+	padding-left:10px;
+	color:#444444;
 	text-decoration:none;
 }
 a.topTab:hover{
 	color: #ff9900;
 }
 #mast_head-wrapper{
-	background: url('/site_media/im/mast_head.jpg');
-	width:100%;
-	background-position: center;
-	height:180px;
+	height:364px;
 }
-
+#mast_head{
+    background:url('/site_media/im/header.png');
+    height:364px;
+}

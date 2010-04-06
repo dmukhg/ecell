@@ -7,10 +7,12 @@
 	<body>
 		<div id="top_nav-wrapper">
 			<div id="top_nav" class="page">
-				Entrepreneurship Cell
+                <div id=logo style="float:left">
+                    <img src="/site_media/im/logo.png"/>
+                </div>
 				<div id=tabs>
 					{% for tab in tabsList %}
-					<a href="/article/{{ tab.url }}/" class=topTab>{{ tab.name }}</a>
+					<a href="/{{ tab.url }}/" class=topTab>{{ tab.name }}</a>
 					{% endfor %}
 				</div>
 			</div>

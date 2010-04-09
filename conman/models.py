@@ -66,3 +66,9 @@ class Sector(models.Model):
 
     class Meta:
         db_table="sector"
+
+#class Updates(models.Model):
+#    '''A collection of all updates the site has seen till date. The chronologically recent updates will show on the home page.'''
+ #   description = models.CharField(max_length = 100)
+  #  date = models.DateField()
+   # image = models.foreignKey(Images)

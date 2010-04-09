@@ -8,7 +8,14 @@
 		<div id="top_nav-wrapper">
 			<div id="top_nav" class="page">
                 <div id=logo style="float:left">
-                    <img src="/site_media/im/logo.png"/>
+                    <a href="/"><img style="border:0px;" src="/site_media/im/logo.png"/></a>
+                </div>
+                <div id=login style="padding-top:3px;float:line;text-align:right;">
+                    {% if logged %}
+                    <a href="/account/logout" class=topTab>Logout</a>|<a href="/account/" class=topTab>Settings</a>
+                    {% else %}
+                    <a href="/account/" class=topTab>Login</a>|<a href="/account/signup" class=topTab>Register</a>
+                    {% endif %}
                 </div>
 				<div id=tabs>
 					{% for tab in tabsList %}
@@ -18,17 +25,32 @@
 			</div>
 			
 		</div>
-		<div id="mast_head-wrapper">
-			<div id="mast_head" class="page">
-				{% block masthead %}
-				{% endblock %}
-			</div>
-		</div>
+        {% block masthead %}
+        {% endblock %}
 		<div id="content-wrapper">
 			<div id="content" class="page">
 				{% block content %}
 				{% endblock %}
 			</div>
 		</div>
+        <div id="footer-wrapper">
+            <div id="footer" class="page">
+                <div id="footer-box-info">
+                    <img src="/site_media/im/ecell-icon.jpg"><img src="/site_media/im/kgp-logo.jpg">
+                    <p>This page and pages within this domain are &copy; Ecell-IITKharagpur. Your name and other details as given on registration will never be disclosed to any third party.</p>
+                    <a style="padding-left:20px;" href="mailto:">Contact Us</a>
+                </div>
+                {% for item , sub_item in foot_pool.items %}
+                    <div id="footer-box">
+                        <a class="foot-list-head" href="/article/{{ item.url }}">{{ item.name }}</a>
+                        <ul class="foot-list">
+                            {% for i in sub_item %}
+                            <li class=sub_footer><a href="/article/{{ item.url }}/{{ i.url }}" class=foot-links>{{ i.name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
 	</body>
 </html>

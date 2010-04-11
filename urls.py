@@ -9,7 +9,6 @@ from ecell2 import settings
 urlpatterns = patterns('',
     # Example:
     (r'^account/', include('ecell2.account.urls')),
-    (r'^article/', include('ecell2.conman.urls')),
     (r'^upload/' , include('ecell2.upload.urls')),
     (r'^$', include('ecell2.conman.urls')),
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
@@ -24,3 +23,7 @@ if settings.DEBUG:
 	urlpatterns += patterns('',
             (r'^site_media/(?P<path>.*)$', stat,{'document_root': '/home/caesar/code/ecell2/site_media'}),
 	)
+
+urlpatterns += patterns('',
+    (r'^article/', include('ecell2.conman.urls')),
+)

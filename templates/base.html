@@ -4,7 +4,7 @@
 		<link rel=stylesheet href="/site_media/css/base.css">
 		{% block head %}{% endblock %}
 	</head>
-	<body>
+    <body>
 		<div id="top_nav-wrapper">
 			<div id="top_nav" class="page">
                 <div id=logo style="float:left">
@@ -27,13 +27,13 @@
 		</div>
         {% block masthead %}
         {% endblock %}
-		<div id="content-wrapper">
-			<div id="content" class="page">
+		<div id="content-wrapper" style="display:block;">
+			<div id="content" style="border:1px solid black;display:block" class="page">
 				{% block content %}
 				{% endblock %}
 			</div>
 		</div>
-        <div id="footer-wrapper">
+        <div style="display:block;" id="footer-wrapper">
             <div id="footer" class="page">
                 <div id="footer-box-info">
                     <img src="/site_media/im/ecell-icon.jpg"><img src="/site_media/im/kgp-logo.jpg">

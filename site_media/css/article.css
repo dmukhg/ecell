@@ -6,13 +6,13 @@
 }
 #sidebar{
 	float:left;
-	height:500px;
 	width:250px;
+	height:500px;
 	background-color:#eeeeff;
 	border-right:1px solid #ccccff;
 }
 #content_area{
-	float:left;
 	padding:7px;
 	width:635px;
+    height:500px;
 }

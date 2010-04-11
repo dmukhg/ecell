@@ -39,6 +39,14 @@ a.topTab:hover{
     background:url('/site_media/im/header_short.png');
     height:104px;
 }
+#content-wrapper{
+    width:100%;
+    padding-bottom:10px;
+}
+#footer-wrapper{
+    width:100%;
+    float:none;
+}
 #footer{
     border-top:1px dotted #666666;
 }

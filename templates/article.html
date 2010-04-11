@@ -6,12 +6,17 @@
 
 {% block masthead %}
  <div id="mast_head-wrapper">
-    <div id="home_mast_head" class="page">
-       &nbsp; 
+    <div id="other_mast_head" class="page">
+        {{ article }}
     </div>
 </div>
 </div>
 {% endblock %}
 
 {% block content %}
+<div id=sidebar>amazin sidebar</div>
+    <div id=content_area>
+    {{ article.content|safe  }}
+    hellos;kljalsdj
+    </div>
 {% endblock %}

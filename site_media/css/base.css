@@ -1,81 +1,59 @@
 body{
-	margin:0;
-	background-color: #ffffff;
+    margin:auto;
+    background:#ffffff;
 }
-#top_nav-wrapper{
-	width:100%;
-    padding-top:0;
-	height:64px;
+.wrapper{
+    width:100%;
+    display:block;
 }
 .page{
-	width:960px;
-	margin:auto;
+    margin:auto;
+    width:960px;
 }
 #top_nav{
+    height:65px;
+    text-align:right;
 }
-#tabs{
-    padding-top:9px;
-	float:right;
+#logo{
+    width:300px;
+    float:left;
+}
+#login_links{ 
+    text-align:right;
+}
+#tabs {
+    margin-top:19px;
+    text-align:right;
 }
 a.topTab{
-	font-family:arial;
-	font-size:10pt;
-	font-weight:none;
-	padding-left:5px;
+    font-size:10pt;
+    color:#444444;
+    font-family:arial;
+    padding-left:5px;
     padding-right:5px;
-	color:#444444;
-	text-decoration:none;
+    text-decoration:none;
 }
 a.topTab:hover{
-	color: #ff9900;
+    color:#ff5500;
 }
-#mast_head-wrapper{
-}
-#home_mast_head{
-    background:url('/site_media/im/header.png');
-    height:388px;
-}
-#other_mast_head{
-    background:url('/site_media/im/header_short.png');
-    height:104px;
-}
-#content-wrapper{
-    width:100%;
-    padding-bottom:10px;
-}
-#footer-wrapper{
-    width:100%;
-    float:none;
-}
+
 #footer{
-    border-top:1px dotted #666666;
+    height:200px;
+    border-top:1px dotted #888888;
 }
 #footer-box{
+    padding-left:20px;
     float:right;
-    font-size:8pt;
-    font-family:arial;
-    color:#ff6600;
-    width:auto;
-    padding-left:30px;
-}
-#footer-box-info{
-    float:left;
-    font-size:8pt;
-    font-family:arial;
-    color:#666666;
-    width:170px;
-    padding-left:4px;
-    padding-top:5px;
 }
 a.foot-list-head{
     font-size:10pt;
     font-weight:bold;
     color:#444444;
     text-decoration:none;
-    font-family:;
+    font-family:arial;
 }
 a.foot-list-head:hover{
-    text-decoration:underline;
+    color:#ff5500;
 }
 a.foot-links{
     font-size:9pt;
@@ -85,7 +63,7 @@ a.foot-links{
     font-family:arial;
 }
 a.foot-links:hover{
-    text-decoration:underline;
+    color:#ff6600;
 }
 ul.foot-list{
     list-style-type:none;
@@ -93,4 +71,12 @@ ul.foot-list{
 }
 li.sub_footer{
     padding-bottom:5px;
+}
+#footer-box-info{
+    width:200px;
+    float:left;
+    font-family:arial;
+    font-size:9pt;
+    color:#777777;
+    clear:none;
 }

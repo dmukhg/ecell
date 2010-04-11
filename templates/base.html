@@ -1,45 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html>
-	<head>
-		<title>Entrepreneurship Cell | IIT Kharagpur</title>
-		<link rel=stylesheet href="/site_media/css/base.css">
-		{% block head %}{% endblock %}
-	</head>
+    <head>
+        <title>Entrepreneurship Cell | IIT Kharagpur </title>
+        <link rel=stylesheet href="/site_media/css/base.css">
+        <link type="image/x-icon" href="/site_media/im/favicon.png" rel="shortcut icon"/>
+        {% block head %}{% endblock %}
+    </head>
     <body>
-		<div id="top_nav-wrapper">
-			<div id="top_nav" class="page">
-                <div id=logo style="float:left">
-                    <a href="/"><img style="border:0px;" src="/site_media/im/logo.png"/></a>
-                </div>
-                <div id=login style="padding-top:3px;float:line;text-align:right;">
+        <div id="tab_wrapper" class=wrapper>
+            <div id="top_nav" class=page>
+                <div id=logo> <a href="/"><img style="border:0;" src="/site_media/im/logo.png"></a></div>
+                <div id=login_links>
                     {% if logged %}
                     <a href="/account/logout" class=topTab>Logout</a>|<a href="/account/" class=topTab>Settings</a>
                     {% else %}
                     <a href="/account/" class=topTab>Login</a>|<a href="/account/signup" class=topTab>Register</a>
                     {% endif %}
                 </div>
-				<div id=tabs>
-					{% for tab in tabsList %}
-					<a href="/{{ tab.url }}/" class=topTab>{{ tab.name }}</a>
-					{% endfor %}
-				</div>
-			</div>
-			
-		</div>
-        {% block masthead %}
-        {% endblock %}
-		<div id="content-wrapper" style="display:block;">
-			<div id="content" style="border:1px solid black;display:block" class="page">
-				{% block content %}
-				{% endblock %}
-			</div>
-		</div>
-        <div style="display:block;" id="footer-wrapper">
-            <div id="footer" class="page">
+                <div id=tabs>
+                    {% for tab in tabsList %}
+                    <a href="/{{ tab.url }}/" class=topTab>{{ tab.name }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% block masthead %}{% endblock %}  
+
+        <div id="content_wrapper" class=wrapper>
+            <div id=content class=page>
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+        <div id="footer_wrapper" class=wrapper>
+            <div id=footer class=page>
                 <div id="footer-box-info">
                     <img src="/site_media/im/ecell-icon.jpg"><img src="/site_media/im/kgp-logo.jpg">
                     <p>This page and pages within this domain are &copy; Ecell-IITKharagpur. Your name and other details as given on registration will never be disclosed to any third party.</p>
                     <a style="padding-left:20px;" href="mailto:">Contact Us</a>
                 </div>
+
                 {% for item , sub_item in foot_pool.items %}
                     <div id="footer-box">
                         <a class="foot-list-head" href="/article/{{ item.url }}">{{ item.name }}</a>
@@ -50,7 +50,8 @@
                         </ul>
                     </div>
                 {% endfor %}
+
             </div>
         </div>
-	</body>
+    </body>
 </html>

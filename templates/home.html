@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 
 {% block head %}
-
 <script type="text/javascript" src="/site_media/js/jquery-1.3.2.min.js" ></script>
 <script type="text/javascript" src="/site_media/js/jquery-ui-1.5.4.min.js" ></script>
 <script type="text/javascript" src="/site_media/js/tweet.js"></script>
@@ -11,38 +10,43 @@
             });
         </script>
         <link rel=stylesheet href="/site_media/css/fcs.css">
-        {% endblock %}
+        <link rel=stylesheet href="/site_media/css/home.css">
+{% endblock %}
 
-        {% block masthead %}
-        <div id="mast_head-wrapper">
-            <div id="home_mast_head" class="page">
-                &nbsp; 
-            </div>
-        </div>
+{% block masthead %}
+<div id="mast_head_wrapper" class=wrapper>
+    <div id="mast_head" class=page>
+        &nbsp;
     </div>
-    {% endblock %}
+</div>
+{% endblock %}
 
-    {% block content %}
-    <div id="featured" style="float:left;">
-        <ul class="ui-tabs-nav">
-            {% for update in updates %}  
-            <li class="ui-tabs-nav-item ui-tabs-selected" id="nav-fragment-{{ forloop.counter }}"><a href="#fragment-{{ forloop.counter }}"></img src="images/image1-small.jpg" alt="" /><span>{{update.description}}</span></a></li>
-            {% endfor %}
-        </ul>
-        <!-- First Content -->
-        {% for update in updates %}
-        <div id="fragment-{{ forloop.counter }}" class="ui-tabs-panel {% ifnotequal forloop.counter 1 %} ui-tabs-hide {% endifnotequal %}" style="">
-            <img src="images/image1.jpg" alt="" />
-            <div class="info" >
-                <h2><a href="#" >{{ update.description }}</a></h2>
-                <p>{{ update.content }}</p>
+{% block content %}
+<table cellspacing=0 cellpadding=0 border=0>
+    <tr valign=top>
+        <td>
+            <div id="featured">
+                <ul class="ui-tabs-nav">
+                    {% for update in updates %}  
+                        <li class="ui-tabs-nav-item ui-tabs-selected" id="nav-fragment-{{ forloop.counter }}"><a href="#fragment-{{ forloop.counter }}"></img src="images/image1-small.jpg" alt="" /><span>{{update.description}}</span></a></li>
+                    {% endfor %}
+                </ul>
+                <!-- First Content -->
+                {% for update in updates %}
+                <div id="fragment-{{ forloop.counter }}" class="ui-tabs-panel {% ifnotequal forloop.counter 1 %} ui-tabs-hide {% endifnotequal %}" style="">
+                    <img src="images/image1.jpg" alt="" />
+                     <div class="info" >
+                        <h2><a href="#" >{{ update.description }}</a></h2>
+                        <p>{{ update.content }}</p>
+                    </div>
+                </div>
+                {% endfor %}
             </div>
-        </div>
-        {% endfor %}
-    </div>
-     <!--<div id="twitter_div" style="" class="container-body">
-                  <center><h3 class="container-heading">Twitter Updates</h3></center>
-                          <ul id="twitter_update_list"></ul>
-                                  <a href="http://twitter.com/eCellfellas" id="twitter-link" style="display:block;text-align:right;">follow us on Twitter</a>
-                              </div>-->
-    {% endblock %}
+        </td>
+        <td>
+            twitter
+        </td>
+    </tr>
+</table>
+
+{% endblock %}

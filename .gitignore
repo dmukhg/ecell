@@ -6,3 +6,5 @@
 */*pyc
 site_media/uploads
 site_media/uploads/*
+*.b
+*/*.b

@@ -8,7 +8,7 @@ body{
 }
 .page{
     margin:auto;
-    width:960px;
+    width:936px;
 }
 #top_nav{
     height:65px;
@@ -39,6 +39,7 @@ a.topTab:hover{
 
 #footer{
     height:200px;
+    padding-top:4px;
     border-top:1px dotted #888888;
 }
 #footer-box{

@@ -23,4 +23,19 @@
     border-left:1px dotted #777777;
     padding-left:9px;
 }
-
+#home_precis_head{
+    font-family:arial;
+    font-weight:bold;
+    font-size:12pt;
+    color:#333333;
+    height:50px;
+}
+#home_precis_content{
+    width:250px;
+    font-family:arial;
+    font-weight:none;
+    padding-left:10px;
+    text-align:justify;
+    font-size:10pt;
+    color:#333333;
+}

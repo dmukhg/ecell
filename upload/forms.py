@@ -11,3 +11,12 @@ class UploadForm(forms.Form):
         data = self.cleaned_data
         f = File(data['get_file'])
         print f.name.split('.').pop()
+
+
+class ImageForm(forms.Form):
+    get_image = forms.FileField()
+
+    def clean(self):
+        data = self.cleaned_data
+        f = File( data['get_image'] )
+        print f.name.split('.').pop()

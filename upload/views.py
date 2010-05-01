@@ -5,6 +5,9 @@ import models
 from definitions import *
 
 def upload(request):
+    '''Incomplete for now copy image_upload code
+    that works and add whatever is nessessary for
+    outsiders'''
     if request.method=="POST":
         if request.user.is_authenticated():
             user=request.user
@@ -17,13 +20,23 @@ def upload(request):
                 u.save()
                 return HttpResponseRedirect("/upload")
             else:
-                return render_to_response("upload.html",{"form":form})
-
-
-
-
+                return render_to_response("upload.html",{"heading":"File Upload","form":form})
     else:
-        return render_to_response("upload.html",{'form':UploadForm()})
+        return render_to_response("upload.html",{"heading":"Upload File",'form':UploadForm()})
 
 
-
+def image_upload( request ):
+    if request.method == "POST":
+        if request.user.is_authenticated() and request.user.is_staff:
+            user = request.user
+            form = ImageForm( request.POST , request.FILES )
+            if form.is_valid():
+                u = models.image( file = request.FILES['get_image'] )
+                u.save()
+                return render_to_response( "upload.html" , {"heading":"Upload Successful any more:", "form":ImageForm()}) 
+            else:
+                return render_to_response( "upload.html" , {"heading":"Image Upload","form":form})
+        else:
+            return render_to_response( "message.html" , {"message":"Hey! get out of here. You are not authorised to do whatever it is that you are trying. Login as a staff member to get this service" })
+    else:
+        return render_to_response("upload.html", {"heading":"Image Upload", "form":ImageForm()})

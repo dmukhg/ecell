@@ -10,6 +10,7 @@ from views import *
 urlpatterns = patterns('',
     # Example:
      (r'^$', upload),
+     (r'^image/?', image_upload ),
      #(r'^change/?$', change),
      #(r'^signin/?', signin),
 

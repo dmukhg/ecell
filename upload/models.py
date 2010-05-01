@@ -10,3 +10,12 @@ class upload(models.Model):
 
     class Meta:
         db_table="uploads"
+
+class image(models.Model):
+    '''Handles the uplaoad of images for a more cmssy feel
+    I intend to make the images accesible by templates via
+    a dictionary passed containing all locations'''
+    file = models.ImageField( upload_to = "site_media/im/" )
+    
+    def __unicode__(self):
+        return self.file

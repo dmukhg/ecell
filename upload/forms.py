@@ -18,5 +18,16 @@ class ImageForm(forms.Form):
 
     def clean(self):
         data = self.cleaned_data
-        f = File( data['get_image'] )
-        print f.name.split('.').pop()
+        type_check = False 
+        try:
+            f = File( data['get_image'] )
+        except:
+            self._errors['get_image'] = ErrorList(['Please input an image file'])
+            return data
+        
+
+        type_check = f.name.split('.').pop() not in [ 'jpg' , 'gif' , 'png' ]
+        if type_check:
+           self._errors['get_image'] = ErrorList(['This is not an image file. Supported types are jpg gif png'])
+
+        return data

@@ -15,12 +15,16 @@ class UploadForm(forms.Form):
 
 class ImageForm(forms.Form):
     get_image = forms.FileField()
+    tag = forms.CharField(max_length = 40, label = "Tag")
 
     def clean(self):
         data = self.cleaned_data
         type_check = False 
         try:
             f = File( data['get_image'] )
+            t = data['tag']
+            if t.split(' ').length() is 0:
+                self._errors['tag'] = ErrorList(['Tag may not contain spaces'])
         except:
             self._errors['get_image'] = ErrorList(['Please input an image file'])
             return data

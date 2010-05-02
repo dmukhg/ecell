@@ -1,3 +1,7 @@
+#mast_head{
+    background:url("/site_media/im/article_header.png");
+    height:180px;
+}   
 #content{
 	color:#444444;
 	font-size:11pt;
@@ -5,14 +9,28 @@
 	font-weight:none;
 }
 #sidebar{
-	float:left;
 	width:250px;
-	height:500px;
 	background-color:#eeeeff;
 	border-right:1px solid #ccccff;
 }
 #content_area{
 	padding:7px;
+    font-family:arial;
+    font-size:10pt;
+    width:500px;
+    color:#444444;
 	width:635px;
     height:500px;
+}
+#mast_head{
+    text-align:right;
+    }
+#mast_heading{
+    font-family:arial;
+    font-weight:bold;
+    font-size:20pt;
+    color:white;
+    margin-right:20px;
+    position:relative;
+    top:85px;
 }

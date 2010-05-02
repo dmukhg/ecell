@@ -42,10 +42,10 @@
 
                 {% for item , sub_item in foot_pool.items %}
                     <div id="footer-box">
-                        <a class="foot-list-head" href="/article/{{ item.url }}">{{ item.name }}</a>
+                        <a class="foot-list-head" href="/{{ item.url }}">{{ item.name }}</a>
                         <ul class="foot-list">
                             {% for i in sub_item %}
-                            <li class=sub_footer><a href="/article/{{ item.url }}/{{ i.url }}" class=foot-links>{{ i.name }}</a></li>
+                            <li class=sub_footer><a href="/{{ item.url }}/{{ i.url }}" class=foot-links>{{ i.name }}</a></li>
                             {% endfor %}
                         </ul>
                     </div>

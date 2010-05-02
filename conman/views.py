@@ -21,7 +21,7 @@ def home(request):
     return render_to_response("home.html",{'logged':logged,'tabsList':tabs_qs,'updates':updates,'foot_pool':foot_pool})
 
 
-def article(request,article): ###Eunikorn - rewritten with major changes
+def article(request,url): ###Eunikorn - rewritten with major changes
     logged = request.user.is_authenticated()
     tabs_qs = Sector.objects.filter(parent=None).order_by('display_order')
     footer_qs = FooterFormatter(Sector.objects.all())
@@ -33,15 +33,27 @@ def article(request,article): ###Eunikorn - rewritten with major changes
     for (k,v) in zip(foot,sub_foot):
         foot_pool[k] = v
 
+    # stripping url of trailing /
+    url = url.split('/')
+    while url[-1] is u'':
+       del(url[-1])
 
-    pathComponents = article.split('/')
-    print pathComponents 
-    parent1 = None 
-    for i in range(0,len(pathComponents)):
-        try : 
-            parent1 = Sector.objects.get(parent = parent1,url = pathComponents[i])
-        except: ###Eunikorn : is there a need to check for MultipleObjectsReturned ? i dont think so 
-            return render_to_response("404.html",{'tabsList':tabs_qs,'logged':logged,'foot_pool':foot_pool})
-    #article = parent1.article
+    if url.__len__() is 1:
+       '''Do whatever for top level elements'''
+       text = Sector.objects.get( url =url.pop() , parent = None )
+       heading = text.name
+       text = text.name
+       
+    else:
+       text = Sector.objects.get( url = url.pop() , parent = Sector.objects.get( url = url.pop()))
+       heading = text.name
+       text = text.article
+       return render_to_response("article.html", {"article":text,"heading":heading,"logged":logged,"tabsList":tabs_qs,"foot_pool":foot_pool})
 
-    return render_to_response("article.html",{'logged':logged,'tabsList':tabs_qs,'article':parent1.name,'pathComponents':pathComponents,'foot_pool':foot_pool})
+   
+
+
+    return render_to_response("404.html",{'logged':logged,'tabsList':tabs_qs,'foot_pool':foot_pool})
+
+
+

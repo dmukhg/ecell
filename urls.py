@@ -25,5 +25,5 @@ if settings.DEBUG:
 	)
 
 urlpatterns += patterns('',
-    (r'^article/', include('ecell2.conman.urls')),
+    (r'', include('ecell2.conman.urls')),
 )

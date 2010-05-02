@@ -16,6 +16,8 @@ class image(models.Model):
     I intend to make the images accesible by templates via
     a dictionary passed containing all locations'''
     file = models.ImageField( upload_to = "site_media/im/" )
+    #access_level=models.SmallIntegerField(blank=False)
+    tag = models.CharField( max_length=40,blank=False,null=False)
     
     def __unicode__(self):
         return self.file

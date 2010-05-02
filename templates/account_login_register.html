@@ -11,7 +11,8 @@
 </style>
 {% endblock %}
 {% block content %}
-<div style="float:right;width:300px;">
+<table cellspacing=0 cellpadding=0 border=0 class=page style="border-top:1px dotted #888888 ">
+    <tr valign=top><td>
 	<h2>Login...</h2>
 <form method=post action="/account/">
 <table cellspacing=3 cellpadding=0 border=0>
@@ -21,12 +22,11 @@
         {% for element in login_form %}
 	    <tr><td  {% if element.errors %}class=error {% endif %}>{{ element.label_tag }}</td><td  {% if element.errors %}class=error {% endif %}>{{ element }}</td><td  {% if element.errors %}class=error {% endif %}>{{element.errors.as_text}}</td></tr>
         {% endfor %}
-        <tr><td colspan=2><input type="submit" value="Register">&nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" value="Clear"></td></tr>
+        <tr><td colspan=2><input type="submit" value="Login">&nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" value="Clear"></td></tr>
 </table>
 </form>
-</div>
-
-<div style="float:left;">
+</td>
+<td style="padding-left:20px;border-left:1px dotted #888888 ">
 	<h2>Or Register with us...</h2>
 <form method="POST" action="/account/signup/">
     <table style="font-family:sans;font-size:10pt;" width=580px cellspacing=0 cellpadding=4 border=0>
@@ -36,5 +36,7 @@
 	    <tr><td colspan=2><input type="submit" value="Register">&nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" value="Clear"></td></tr>
     </table>
 </form>
-</div>
+</td>
+</tr>
+</table>
 {% endblock %}

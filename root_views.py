@@ -14,7 +14,8 @@ def get_base_vars(request):
 
     result ={'logged':logged,
             'tabsList':tabs_qs,
-            'foot_pool':foot_pool}
+            'foot_pool':foot_pool,
+            'user':request.user.email}
 
     return result
 

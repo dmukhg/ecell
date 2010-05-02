@@ -1,36 +1,56 @@
 {% extends "base.html" %}
 {% block head %}
 <link rel=stylesheet href="/site_media/css/account_settings.css">
-<script type=text/javascript language=javascript src="/site_media/js/jquery-1.4.2.js">
+<script type=text/javascript language=javascript src="/site_media/js/jquery-1.3.2.min.js">
 </script>
 <script type=text/javascript language=javascript>
-function doSlide(what){
-    $("#"+what+"_current").slideUp('slow',function (){});
-    $("#"+what+"_widget").slideDown('slow',function (){}); 
+function doShow(what){
+    $("#pool_static").slideUp('slow',function (){});
+    $("#pool_editable").slideDown('slow',function (){}); 
 }
-
+function doHide(what){
+    $("#pool_editable").slideUp('slow',function (){});
+    $("#pool_static").slideDown('slow',function (){}); 
+}
+function doPassword(){
+    $("#password_container").slideDown('slow',function (){});
+}
 </script>
 {% endblock %}
 
 {% block content %}
-    {% for w in pool %}
-    <div class=set_container id="{{ w.name }}_container">
-	    <div class=set_header id="{{ w.name}}_header">
-		    {{ w.label }}
-	    </div>
-	    <div class=set_widget id="{{ w.name}}_widget_container">
-		    <div style="display:none;" id="{{ w.name }}_widget">
-	                <form action="/account/change" method=POST>
-		            {{ w }}
-			    <input type=hidden name=field value="{{ w.name }}">
-            		    <input type=submit value=Done>
-	                </form>
-	            </div>
-		    <div id="{{ w.name }}_current">
-			    <span id="{{ w.name }}_selector" style="cursor:hand;float:right;font-size:8pt;background:#ff9900;color:#ffffff;"><a href="javascript:doSlide('{{w.name}}')">Change</a></span>
-	            {{ w.data }}
-	            </div>
-	    </div>
-    </div>
+<div id=pool_static>
+    <table cellspacing=0 cellpadding=1 border=0>
+        <tr valign=top><td colspan=2 style="text-align:right"> <a class=account_change href="javascript:doShow()">Change</a></td></tr>
+    {% for element in pool %}
+        <tr valign=top><td class=account_element_static_label>{{ element.label }}</td><td class=account_element_static_data>{{ element.data }}</td></tr>
     {% endfor %}
+    </table>
+</div>
+<div style="display:none;" id=pool_editable>
+    <table cellspacing=0 cellpadding=1 border=0>
+        <tr valign=top><td colspan=2 style="text-align:right"> <a class=account_change href="javascript:doHide()">Don't Change</a></td></tr>
+        <form method=POST action="/account/change">
+            {% for element in pool %}
+                <tr valign=top><td class=account_element_static_label>{{ element.label }}</td><td class=account_element_dyn>{{ element }}</td></tr>
+            {% endfor %}
+            <tr valign=top><td colspan=2><input type=submit value=update><input type=reset></td></tr>
+        </form>
+    </table>
+</div>
+<div id=password_change>
+    <table cellspacing=0 cellpadding=1 border=0>
+        <tr valign=top><td colspan=2 style="text-align:right">{% if pwdMsg %} {{ pwdMsg|safe }}  {% endif%} <a class=account_change href="javascript:doPassword()">Change Password</a></td></tr>
+        <tr><td>
+        <table id=password_container style="display:none;">
+            <form action="/account/change/password" method=POST>
+            <tr valign=top ><td>Current Password</td><td><input type=password name=old_pass id=old_pass></td></tr>
+            <tr valign=top ><td>New Password</td><td><input type=password name=new_pass id=new_pass></td></tr>
+            <tr valign=top><td><input type=submit value=change></td><td><input type=reset value=reset></td></tr>
+            </form>
+        </table>
+        </td></tr>
+    </table>
+</div>
+    
 {% endblock %}

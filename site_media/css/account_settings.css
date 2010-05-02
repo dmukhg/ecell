@@ -1,18 +1,44 @@
-.set_header{
-	background:#00aaff;
-	margin-top:5px;
-	border-top:1px solid #0066ff;
-	border-left:1px solid #0066ff;
-	border-right:1px solid #0066ff;
-	border-bottom:none;
-	font-weight:bold;
-	font-size:10pt;
+#content{
+    height:500px;
+    border-top:1px dotted #777777;
 }
-.set_widget{
-	background:#eeeeee;
-	border-bottom:1px solid #0066ff;
-	border-left:1px solid #0066ff;
-	border-right:1px solid #0066ff;
-	border-top:none;
-        padding:4px;	
+#pool_static{
+    margin-left:20px;
+    float:left;
+}
+#pool_editable{
+    margin-left:20px;
+    float:left;
+}
+.account_element_static_label{
+    font-family:arial;
+    text-align:right;
+    padding-right:10px;
+    font-size:10pt;
+    font-weight:none;
+    color:#444444;
+}
+.account_element_static_data{
+    font-family:arial;
+    font-size:10pt;
+    font-weight:none;
+    color:#0044ee;
+}
+a.account_change{
+    font-family:arial;
+    font-size:10pt;
+    font-weight:none;
+    text-decoration:none;
+    color:#555555;
+}
+a.account_change:hover{
+    text-decoration:underline;
+    color:#ff9900;
+}
+
+#password_change{
+    float:right;
+    font-family:arial;
+    font-size:10pt;
+    color:#444444;
 }

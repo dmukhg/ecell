@@ -4,6 +4,7 @@
 }   
 #content{
 	color:#444444;
+    text-align:justify;
 	font-size:11pt;
 	font-family:sans;
 	font-weight:none;
@@ -28,6 +29,7 @@
 #mast_heading{
     font-family:arial;
     font-weight:bold;
+    float:right;
     font-size:20pt;
     color:white;
     margin-right:20px;

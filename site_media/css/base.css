@@ -81,3 +81,25 @@ li.sub_footer{
     color:#777777;
     clear:none;
 }
+.menu_container{
+    float:right;
+    background-color:#ffffff;
+    opacity:0.7;
+    width:936px;
+    display:none;
+}
+#menu_wrapper{
+    text-align:right;
+}
+a.menu-links{
+    font-family:arial;
+    font-size:10pt;
+    color:black;
+    opacity:1;
+    padding:9px;
+    text-decoration:none;
+}
+a.menu-links:hover{
+    color:#ff5500;
+    text-decoration:underline;
+}

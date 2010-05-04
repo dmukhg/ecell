@@ -4,6 +4,17 @@
         <title>Entrepreneurship Cell | IIT Kharagpur </title>
         <link rel=stylesheet href="/site_media/css/base.css">
         <link type="image/x-icon" href="/site_media/im/favicon.png" rel="shortcut icon"/>
+        <script type="text/javascript" src="/site_media/js/jquery-1.3.2.min.js" ></script>
+        <script type="text/javascript">
+            var currentMenu;
+            function showMenu( which ){
+                if ( currentMenu != which ){
+                    $(".menu_container").hide("slow");
+                    $("#"+which+"_menu").show("slow");
+                }
+                currentMenu = which;
+            }
+        </script>
         {% block head %}{% endblock %}
     </head>
     <body>
@@ -20,10 +31,20 @@
                 </div>
                 <div id=tabs>
                     {% for tab in tabsList %}
-                    <a href="/{{ tab.url }}/" class=topTab>{{ tab.name }}</a>
+                    <a onmouseover="javascript:showMenu('{{ tab.url}}')" id="{{ tab.url }}" href="/{{ tab.url }}/" class=topTab>{{ tab.name }}</a>
                     {% endfor %}
                 </div>
             </div>
+        </div>
+        <div id=menu_wrapper class=page>
+            {% for item , sub_item in foot_pool.items %}
+                <div class=menu_container id="{{ item.url }}_menu">
+                    <a class=menu-links href="/{{ item.url }}" style="padding-left:40px;font-weight:bold;float:left;">{{ item.name }}</a>
+                    {% for i in sub_item%}
+                    <a class="menu-links" href="/{{ item.url}}/{{ i.url }}">{{ i.name }}</a>
+                    {% endfor %}
+                </div>
+            {% endfor %}
         </div>
         {% block masthead %}{% endblock %}  
 

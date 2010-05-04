@@ -7,15 +7,17 @@ from ecell2.root_views import get_base_vars
 def home(request):
     base_vars = get_base_vars(request)
     
+    # fetching updates
     updates = Updates.objects.all()[:4]
 
-   
+    # adding updates to the template dict
     base_vars.update({'updates':updates})
     return render_to_response("home.html", base_vars  )
 
 
 def article(request,url):
     base_vars = get_base_vars(request)
+    url_bak = url
 
     # stripping url of trailing /
     url = url.split('/')
@@ -23,23 +25,19 @@ def article(request,url):
        del(url[-1])
 
     if url.__len__() is 1:
-       '''Do whatever for top level elements'''
-       text = Sector.objects.get( url =url.pop() , parent = None )
-       heading = text.name
-       text = text.name
-       
+        '''Do whatever for top level elements'''
+        text = Sector.objects.get( url =url.pop() , parent = None )
     else:
-       text = Sector.objects.get( url = url.pop() , parent = Sector.objects.get( url = url.pop()))
-       heading = text.name
-       text = text.article
+        '''Return the article matching the given sector and pass it to the template with the updated base_var dictionary'''
+        text = Sector.objects.get( url = url.pop() , parent = Sector.objects.get( url = url.pop()))
 
-       base_vars.update({'article':text,'heading':heading})
-       
-       return render_to_response("article.html", base_vars)
+    heading = text.name
+    text = text.article.content
 
-   
+    base_vars.update({'article':text,'heading':heading, 'url' : url_bak})
+    return render_to_response("article.html", base_vars)
 
-
+    # Otherwise return Http404 since no match could be found
     return render_to_response("404.html",base_vars)
 
 

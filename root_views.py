@@ -1,4 +1,5 @@
 from conman.models import *
+from django.contrib.auth.models import AnonymousUser
 
 def get_base_vars(request):
     logged = request.user.is_authenticated()
@@ -12,10 +13,19 @@ def get_base_vars(request):
     for (k,v) in zip (foot, sub_foot):
         foot_pool[k] = v
 
+    # Check for staff access
+    if request.user.is_anonymous():
+        staff = False
+        user = None
+    else:
+        staff = request.user.is_staff
+        user = request.user.email
+
     result ={'logged':logged,
             'tabsList':tabs_qs,
             'foot_pool':foot_pool,
-            'user':request.user.email}
+            'user':user,
+            'staff':staff,}
 
     return result
 

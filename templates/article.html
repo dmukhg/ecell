@@ -23,7 +23,10 @@
         <td width=300 id=sidebar>
         </td>
         <td id=content_area>
-            {{ article.content|safe }}
+            {% if staff %}            
+            <div align=right><a id=edit_bar href="/edit/{{ url }}">Edit</a></div>
+            {% endif %}
+            {{ article|safe }}
         </td>
     </tr>
 </table>

@@ -12,10 +12,10 @@
 {% endblock %}
 {% block content %}
 <table cellspacing=0 cellpadding=0 border=0 class=page style="border-top:1px dotted #888888 ">
-    <tr valign=top><td>
-	<h2>Login...</h2>
+    <tr valign=top><td style="background-color:#eeeeff;padding-left:13px;">
+	<h2 style="font-family:sans;font-size:14pt;font-weight:bold;color:#444444">Login...</h2>
 <form method=post action="/account/">
-<table cellspacing=3 cellpadding=0 border=0>
+<table cellspacing=0 cellpadding=2 border=0 style="font-family:sans;font-size:10pt;">
 	{% if bad %}
 	<tr><td colspan=2 style="background-color:#ff9999"> Please enter a valid user name </td></tr>
 	{% endif %}
@@ -27,7 +27,7 @@
 </form>
 </td>
 <td style="padding-left:20px;border-left:1px dotted #888888 ">
-	<h2>Or Register with us...</h2>
+	<h2 style="font-family:sans;font-size:14pt;font-weight:bold;color:#444444">Or Register with us...</h2>
 <form method="POST" action="/account/signup/">
     <table style="font-family:sans;font-size:10pt;" width=580px cellspacing=0 cellpadding=4 border=0>
 	    {% for element in reg_form %}

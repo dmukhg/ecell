@@ -34,3 +34,10 @@
     position:relative;
     top:85px;
 }
+#edit_bar{
+    font-family:arial;
+    text-decoration:none;
+    color:#ff9900;
+    font-size:8pt;
+    text-align:right;
+}

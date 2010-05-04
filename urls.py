@@ -25,5 +25,6 @@ if settings.DEBUG:
 	)
 
 urlpatterns += patterns('',
+    (r'^edit',include('ecell2.conman.edit_urls')),
     (r'', include('ecell2.conman.urls')),
 )

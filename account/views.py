@@ -15,18 +15,23 @@ def index(request):
 		return HttpResponseRedirect("/account/settings/")
     if request.method=="POST":
     # verify fields and login
-        email=request.POST['email']
-        username=User.objects.get(email=email)
-        password=request.POST['password']
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            # authenticated so returning as authenticated
-            login(request,user)
-            return HttpResponseRedirect("/");
+        login_form = LoginForm( request.POST )
+        if login_form.is_valid():
+            email=request.POST['email']
+            username=User.objects.get(email=email)
+            password=request.POST['password']
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                # authenticated so returning as authenticated
+                login(request,user)
+                return HttpResponseRedirect("/");
+            else:
+                # error page with retry
+                base_vars.update({"reg_form":SignupForm(),"login_form":LoginForm()})
+                return render_to_response("account_login_register.html",base_vars) 
         else:
-            # error page with retry
-            base_vars.update({"reg_form":SignupForm(),"login_form":LoginForm()})
-            return render_to_response("account_login_register.html",base_vars) 
+            base_vars.update({"reg_form":SignupForm(), "login_form":login_form})
+            return render_to_response("account_login_register.html", base_vars)
     else:
         # if method is get returns login form 
         base_vars.update({"reg_form":SignupForm(),"login_form":LoginForm()})

@@ -20,26 +20,37 @@ class SignupForm(forms.Form):
 
 
      def clean(self):
-	     data=self.cleaned_data
-	     try:
-		     entered_name=data['email']
-        	     password1=data['password1']
-	             password2=data['password2']
-         	     user_qs=User.objects.all()
-        	     for user in user_qs:
-	        	     if entered_name==user.email:
-		        	     self._errors['email']=ErrorList(['Email already registered. Choose a different one.'])
-               	     if password1!=password2:
-	                 self._errors['password2']=ErrorList(['Passwords do not match'])
-                         del data['password1']
-	                 del data['password2']
-             except:
-		     pass
-	     return data 
+        data=self.cleaned_data
+        try:
+            entered_name=data['email']
+            password1=data['password1']
+            password2=data['password2']
+            user_qs=User.objects.all()
+            for user in user_qs:
+                if entered_name==user.email:
+                    self._errors['email']=ErrorList(['Email already registered. Choose a different one.'])
+                if password1!=password2:
+                    self._errors['password2']=ErrorList(['Passwords do not match'])
+                    del data['password1']
+                    del data['password2']
+        except:
+            pass
+        return data 
 
 class LoginForm(forms.Form):
-     email=forms.EmailField(max_length=25)
-     password=forms.CharField(max_length=25,widget=forms.PasswordInput,label='Password')
+    email=forms.EmailField(max_length=25)
+    password=forms.CharField(max_length=25,widget=forms.PasswordInput,label='Password')
+
+    def clean(self):
+        data = self.cleaned_data
+        try:
+            email = data['email']
+            user = User.objects.get( email = email )
+        except Exception:
+            self._errors['email'] = ErrorList(['Wrong email or password'])
+        return data
+
+
 
 
 class AccountSettingsForm(forms.Form):

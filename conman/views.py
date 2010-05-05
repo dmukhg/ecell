@@ -20,6 +20,7 @@ def article(request,url):
     url_bak = url
 
     # stripping url of trailing /
+    # neccessary in case a url like /initiativse/kljsaf/lsfjdsl/// is entered
     url = url.split('/')
     while url[-1] is u'':
        del(url[-1])
@@ -39,12 +40,14 @@ def article(request,url):
     crumbs = [sector]
     while crumbs[-1].parent is not None:
         crumbs.append( crumbs[-1].parent )
+    crumbs.reverse()
 
-    base_vars.update({'article':text,'heading':heading, 'url' : url_bak , 'crumbs' : crumbs })
+    # generating sidebar
+    siblings = Sector.objects.filter( parent = sector.parent )
+    children = Sector.objects.filter( parent = sector )
+
+    base_vars.update({'article':text,'heading':heading, 'url' : url_bak , 'crumbs' : crumbs , 'siblings' : siblings , 'children' : children })
     return render_to_response("article.html", base_vars)
 
     # Otherwise return Http404 since no match could be found
     return render_to_response("404.html",base_vars)
-
-
-

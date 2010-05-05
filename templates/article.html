@@ -21,6 +21,16 @@
 <table cellspacing=0 cellpadding=0 border=0>
     <tr valign=top>
         <td width=300 id=sidebar>
+            <ul id=sidebar-list >
+                {% for sibling in siblings %}
+                <li id=sidebar-item><a href="{{ sibling.get_url }}" class=side_links>{{ sibling.name }}</a></li>
+                {% for child in children %}
+                {% ifequal child.parent sibling %}
+                <li id=sidebar-subitem><a href="{{ child.get_url }}" class=side_sub_links>{{ child.name }}</a></li>
+                {% endifequal %}
+                {% endfor %}
+                {% endfor %}
+            </ul>
         </td>
         <td id=content_area>
             {% if staff %}            

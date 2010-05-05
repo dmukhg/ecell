@@ -32,6 +32,7 @@ class Sector(models.Model):
         while up.parent is not None:
             rendered_url = up.parent.url + '/' + rendered_url
             up = up.parent
+        rendered_url = u'/' + rendered_url
         return rendered_url
 
 

@@ -24,9 +24,17 @@
         </td>
         <td id=content_area>
             {% if staff %}            
-            <div align=right><a id=edit_bar href="/edit/{{ url }}">Edit</a></div>
+            <div style="float:right"><a id=edit_bar href="/edit/{{ url }}">Edit</a></div>
             {% endif %}
-            {{ article|safe }}
+            <div id=breadcrumbs>
+                <a href="/" class=crumb>Home</a> 
+                {% for crumb in crumbs %}
+                &gt; <a href="{{ crumb.url }}" class=crumb>{{ crumb.name }}</a> 
+                {% endfor %}
+            </div>
+            <div id=article>
+                {{ article|safe }}
+            </div>
         </td>
     </tr>
 </table>

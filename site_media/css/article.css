@@ -43,3 +43,14 @@
     font-size:8pt;
     text-align:right;
 }
+a.crumb{
+    font-family:arial;
+    font-size:9pt;
+    font-weight:none;
+    color:#5555ff;
+    text-decoration:none;
+}
+a.crumb:hover{
+    color:#ff9900;
+    text-decoration:underline;
+}

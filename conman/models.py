@@ -26,6 +26,15 @@ class Sector(models.Model):
     def __unicode__(self):
         return self.name
 
+    def get_url(self):
+        up = self
+        rendered_url = self.url 
+        while up.parent is not None:
+            rendered_url = up.parent.url + '/' + rendered_url
+            up = up.parent
+        return rendered_url
+
+
     class Meta:
         db_table="sector"
 

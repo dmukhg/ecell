@@ -26,15 +26,21 @@ def article(request,url):
 
     if url.__len__() is 1:
         '''Do whatever for top level elements'''
-        text = Sector.objects.get( url =url.pop() , parent = None )
+        sector = Sector.objects.get( url =url.pop() , parent = None )
     else:
         '''Return the article matching the given sector and pass it to the template with the updated base_var dictionary'''
-        text = Sector.objects.get( url = url.pop() , parent = Sector.objects.get( url = url.pop()))
+        sector = Sector.objects.get( url = url.pop() , parent = Sector.objects.get( url = url.pop()))
 
-    heading = text.name
-    text = text.article.content
+    # generating article content & heading
+    heading = sector.name
+    text = sector.article.content
 
-    base_vars.update({'article':text,'heading':heading, 'url' : url_bak})
+    # generating breadcrumbs
+    crumbs = [sector]
+    while crumbs[-1].parent is not None:
+        crumbs.append( crumbs[-1].parent )
+
+    base_vars.update({'article':text,'heading':heading, 'url' : url_bak , 'crumbs' : crumbs })
     return render_to_response("article.html", base_vars)
 
     # Otherwise return Http404 since no match could be found

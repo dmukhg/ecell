@@ -8,7 +8,7 @@ def home(request):
     base_vars = get_base_vars(request)
     
     # fetching updates
-    updates = Updates.objects.all()[:4]
+    updates = Updates.objects.all().order_by( 'date' )[:4]
 
     # adding updates to the template dict
     base_vars.update({'updates':updates})
@@ -42,11 +42,14 @@ def article(request,url):
         crumbs.append( crumbs[-1].parent )
     crumbs.reverse()
 
+    # generating top_nav level 2
+    current_root_sector = crumbs[0] 
+
     # generating sidebar
     siblings = Sector.objects.filter( parent = sector.parent )
     children = Sector.objects.filter( parent = sector )
 
-    base_vars.update({'article':text,'heading':heading, 'url' : url_bak , 'crumbs' : crumbs , 'siblings' : siblings , 'children' : children })
+    base_vars.update({'article':text,'heading':heading, 'url' : url_bak , 'crumbs' : crumbs , 'siblings' : siblings , 'children' : children , 'current_root_sector' : current_root_sector })
     return render_to_response("article.html", base_vars)
 
     # Otherwise return Http404 since no match could be found

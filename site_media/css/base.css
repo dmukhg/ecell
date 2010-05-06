@@ -12,6 +12,9 @@ body{
 }
 #top_nav{
     height:69px;
+    color:#444ff;
+    font-size:10pt;
+    font-family:arial;
     text-align:right;
 }
 #logo{
@@ -74,10 +77,11 @@ li.sub_footer{
     padding-bottom:5px;
 }
 #footer-box-info{
-    width:200px;
+    width:170px;
     float:left;
     font-family:arial;
     font-size:9pt;
+    text-align:justify;
     color:#777777;
     clear:none;
 }
@@ -102,4 +106,10 @@ a.menu-links{
 a.menu-links:hover{
     color:#ff5500;
     text-decoration:underline;
+}
+.user{
+    font-weight:normal;
+    font-size:10pt;
+    color:#000000;
+    padding-right:5px;
 }

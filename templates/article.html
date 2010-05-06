@@ -39,7 +39,7 @@
             <div id=breadcrumbs>
                 <a href="/" class=crumb>Home</a> 
                 {% for crumb in crumbs %}
-                &gt; <a href="{{ crumb.url }}" class=crumb>{{ crumb.name }}</a> 
+                &gt; <a href="{{ crumb.get_url }}" class=crumb>{{ crumb.name }}</a> 
                 {% endfor %}
             </div>
             <div id=article>

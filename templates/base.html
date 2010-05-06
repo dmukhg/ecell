@@ -1,7 +1,13 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html>
     <head>
-        <title>Entrepreneurship Cell | IIT Kharagpur </title>
+ {% block meta-content %}    
+<meta name="description" content="Entrepreneurship Cell, (E-Cell), IIT Kharagpur, has been started under the aegis of SRIC with one major goal - to encourage the spirit of entrepreneurship amongst the students at IIT Kharagpur. In keeping with this goal, E-Cell will organize a series of lectures and workshop focusing on various general aspects of entrepreneurship. E-Cell will also function as a guide to students with concrete business ideas." />
+
+<meta name="keywords" content="entrepreneurship cell,ecell,entrepreneurship,iit kharagpur,iit, ecell iit,entrepreneurship iit,entrepreneurhsip kharagpur,kharagpur,kgp,entrepreneurship kgp,ecell kharagpur,ecellkgp,ecell kgp" />
+{% endblock %}
+
+       <title>Entrepreneurship Cell | IIT Kharagpur </title>
         <link rel=stylesheet href="/site_media/css/base.css">
         <link type="image/x-icon" href="/site_media/im/favicon.png" rel="shortcut icon"/>
         <script type="text/javascript" src="/site_media/js/jquery-1.3.2.min.js" ></script>
@@ -14,6 +20,9 @@
                 }
                 currentMenu = which;
             }
+            $(document).ready ( function (){
+                    $("#{{ current_root_sector.url }}_menu").show("slow");
+                    });
         </script>
         {% block head %}{% endblock %}
     </head>
@@ -23,7 +32,7 @@
                 <div id=logo> <a href="/"><img style="border:0;" src="/site_media/im/logo.png"></a></div>
                 <div id=login_links>
                     {% if logged %}
-                    <a class=topTab href="/account/">{{ user }}</a>|
+                    <span class=user>{{ user }}</span>|
                     <a href="/account/logout" class=topTab>Logout</a>|<a href="/account/" class=topTab>Settings</a>
                     {% else %}
                     <a href="/account/" class=topTab>Login</a>|<a href="/account/signup" class=topTab>Register</a>

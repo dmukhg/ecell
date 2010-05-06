@@ -79,7 +79,7 @@ a.side_links{
     text-decoration:none;
 }
 a.side_links:hover{
-    text-decoration:underline;
+    text-decoration:none;
     color:#ff5500;
 }
 a.side_sub_links{
@@ -89,7 +89,7 @@ a.side_sub_links{
     text-decoration:none;
 }
 a.side_sub_links:hover{
-    text-decoration:underline;
+    text-decoration:none;
     color:#ff5500;
 }
 

@@ -50,7 +50,7 @@
                 <div id=updates-container-heading >Latest Updates</div>
                 {% for update in updates %}
                     <div id=updates>
-                        <div id=updates-heading >        {{ update.description }}</div>
+                        <div id=updates-heading ><a href="{{ update.url }}" class=foot-list-head>{{ update.description }}</a></div>
                         {{ update.content }}
                     </div>
                 {% endfor %}

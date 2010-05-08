@@ -1,4 +1,5 @@
 from conman.models import *
+from django.http import HttpResponseRedirect
 from django.contrib.auth.models import AnonymousUser
 
 def get_base_vars(request):
@@ -36,3 +37,6 @@ def FooterFormatter(qs):
         sub_foot.append(qs.filter(parent=item))
     result = (foot,sub_foot)
     return result
+
+def go( request ):
+    return HttpResponseRedirect('/admin/')

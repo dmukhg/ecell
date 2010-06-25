@@ -47,7 +47,7 @@ class LoginForm(forms.Form):
             email = data['email']
             user = User.objects.get( email = email )
         except Exception:
-            self._errors['email'] = ErrorList(['Wrong email or password'])
+            self._errors['email'] = ErrorList(['Not registered. Please register.'])
         return data
 
 

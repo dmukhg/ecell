@@ -4,6 +4,7 @@ from ecell2.root_views import get_base_vars
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.contrib.auth import logout as auth_logout
+from django.forms.util import ErrorList
 import models as account_models
 from forms import *
 
@@ -27,7 +28,8 @@ def index(request):
                 return HttpResponseRedirect("/");
             else:
                 # error page with retry
-                base_vars.update({"reg_form":SignupForm(),"login_form":LoginForm()})
+                login_form._errors['email'] = ErrorList( ['Wrong email or password'] )
+                base_vars.update({"reg_form":SignupForm(),"login_form":login_form})
                 return render_to_response("account_login_register.html",base_vars) 
         else:
             base_vars.update({"reg_form":SignupForm(), "login_form":login_form})

@@ -1,0 +1,20 @@
+{% extends 'admin_base.html' %}
+{% block content %}
+<div id=content>
+    <div id=update_container class=admin_container>
+        <div class=admin_heading>Updates</div>
+        <div class=admin_content>
+        <table class=admin_content_table cellspacing=0>
+            {% for update in current_updates %}
+            <tr valign=top><td class=admin_content_table>{{ update.description }}</td><td style="text-align:right;" class=admin_content_table><a href="/admin/updates/edit/{{ update.pk }}" class=admin_add>edit</a> | <a href="/admin/updates/delete/{{ update.pk }}" class=admin_delete>delete</a></td></tr>
+            {% endfor %}
+        </table>
+        </div>
+        <div class=admin_footer>
+            <a href="/admin/updates/add" class=admin_add>Add another update</a>
+        </div>
+        
+    </div>
+</div>
+
+{% endblock %}

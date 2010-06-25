@@ -1,0 +1,19 @@
+<html>
+<head>
+    <title>Ecell Kharagpur | Admin Interface</title>
+    <link rel="stylesheet" media="screen" href="/site_media/css/admin.css">
+</head>
+<body>
+    <div id=top_bar>
+        <div id=top_logo>Entrepreneurship Cell, IIT Kharagpur</div>
+        {% if message %}
+        <div id=message>{{ message }}</div>
+        {% endif %}
+        <div id=top_links>{{ user.email }} | <a href="/account/logout" class=top_links>Logout</a> | 
+                         <a href="/account/settings" class=top_links>Settings</a>
+        </div>
+    </div>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

@@ -17,10 +17,10 @@ class Sector(models.Model):
     '''A collection of all categories to be reported in the top
     nav bar to implement a hierarchy of sorts'''
     name = models.CharField(max_length = 50 , unique = True)
-    display_order = models.SmallIntegerField()
+    display_order = models.SmallIntegerField( default = 0)
     url = models.CharField(max_length = 50 , unique = True)
     article = models.ForeignKey(Article,null=True)
-    image = models.OneToOneField(image,null=True)
+    #    image = models.OneToOneField(image,null=True)
     parent = models.ForeignKey("self",null=True)
 
     def __unicode__(self):
@@ -49,12 +49,12 @@ class Updates(models.Model):
     content = models.CharField(max_length = 400)
     # this will be the order of display
     date = models.DateField()
-    image = models.ForeignKey(image,null=True)
-    # since an update need not correspond to a sector, we hard link it to an article with a different url scheme
-    # such as updates/foo or updates/bar
-    url = models.CharField(max_length = 50, null = True)
-    # for such articles the articles to which they correspond must also be hardlinked so..
-    article = models.ForeignKey(Article, null = True)
+    # url the update refers to 
+    url = models.CharField(max_length = 50, null = False)
+    active = models.BooleanField( default = True )
 
     class Meta:
         db_table = "updates"
+
+    def __unicode__(self):
+        return u'<Update: \' ' + self.description + '\' '

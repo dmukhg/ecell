@@ -1,8 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from models import *
-from utils import FooterFormatter
-from ecell2.root_views import get_base_vars
+from ecell2.root_views import get_base_vars 
 
 def home(request):
     base_vars = get_base_vars(request)

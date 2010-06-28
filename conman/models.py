@@ -20,7 +20,6 @@ class Sector(models.Model):
     display_order = models.SmallIntegerField( default = 0)
     url = models.CharField(max_length = 50 , unique = True)
     article = models.ForeignKey(Article,null=True)
-    #    image = models.OneToOneField(image,null=True)
     parent = models.ForeignKey("self",null=True)
 
     def __unicode__(self):
@@ -43,18 +42,32 @@ class Sector(models.Model):
 class Updates(models.Model):
     '''A collection of all updates the site has seen till date.
     The chronologically recent updates will show on the home page.'''
-    # short description to be shown as tab on the updates panel
-    description = models.CharField(max_length = 100)
-    # longer description of the update to be shown on the panel
-    content = models.CharField(max_length = 400)
-    # this will be the order of display
-    date = models.DateField()
-    # url the update refers to 
-    url = models.CharField(max_length = 50, null = False)
+    
+    description = models.CharField(max_length = 100)    # short description to be shown as tab on the updates panel
+    content = models.CharField(max_length = 400)        # longer description of the update to be shown on the panel
+    date = models.DateField()                           # this will be the order of display
+    url = models.CharField(max_length = 50, null = False)# url the update refers to
     active = models.BooleanField( default = True )
 
     class Meta:
         db_table = "updates"
 
     def __unicode__(self):
-        return u'<Update: \' ' + self.description + '\' '
+        return u'<Update: \' ' + self.description + '\' > '
+
+class Snippets( models.Model ):
+    '''The home page/s should be made of snippets from various sub cateories.
+    Required features:
+        > Editable
+        > Linked
+        > Imaged
+    '''
+    image_filename = models.CharField( max_length = 100 )
+    content = models.CharField( max_length = 400 )
+    url = models.CharField( max_length = 50 , null = True )
+
+    class Meta:
+        db_table = 'snippets'
+
+    def __unicode__( self ):
+        return u'<Snippet: \' ' + self.image_filename.split('.')[0] + '\' >'

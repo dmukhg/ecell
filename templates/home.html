@@ -20,27 +20,27 @@
     <tr valign=top>
         <td width=600>
             <table cellspacing=0 cellpadding=0 border=0 cols=2 width=590>
-                <tr valign=top>
+                {% for snip in snippets %}
+                    {% ifequal forloop.counter 1 %}
+                        <tr valign=top>
+                    {% endifequal %}
+                    {% ifequal forloop.counter 3 %}
+                        <tr valign=top>
+                    {% endifequal %}
                     <td width=295>
-                        <img src="/site_media/im/events_icon.png">
-                        <div id=home_precis_content>We organize various events throughout the year. Mostly, these events promote the spirit of entrepreneurship in the students. They also aim at spearheading innovation.</div>
+                        <img src="/site_media/im/{{ snip.image_filename }}">
+                        <div id=home_precis_content>{{ snip.content }}</div>
                     </td>
-                    <td width=295>
-                        <img src="/site_media/im/competition_icon.png">
-                        <div id=home_precis_content>We organize various events throughout the year. Mostly, these events promote the spirit of entrepreneurship in the students. They also aim at spearheading innovation.</div>
-                    </td>
-                </tr>
-                <tr><td>&nbsp;</td></tr>
-                <tr valign=top>
-                    <td>
-                        <img src="/site_media/im/get_involved_icon.png">
-                        <div id=home_precis_content>We organize various events throughout the year. Mostly, these events promote the spirit of entrepreneurship in the students. They also aim at spearheading innovation.</div>
-                    </td>
-                    <td>
-                        <img src="/site_media/im/initiatives_icon.png">
-                        <div id=home_precis_content>We organize various events throughout the year. Mostly, these events promote the spirit of entrepreneurship in the students. They also aim at spearheading innovation.</div>
-                    </td>
-                </tr>
+
+                     {% ifequal 2 forloop.counter %}
+                        </tr>
+                        <tr><td colspan=2>&nbsp;</td></tr>
+                    {% endifequal %}
+                    {% ifequal 4 forloop.counter %}
+                        </tr>
+                        <tr><td colspan=2>&nbsp;</td></tr>
+                    {% endifequal %}
+                {% endfor %}
             </table>
 
 

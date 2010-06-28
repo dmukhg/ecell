@@ -6,11 +6,13 @@ from ecell2.root_views import get_base_vars
 def home(request):
     base_vars = get_base_vars(request)
     
-    # fetching updates
+    # fetching updates and snippets
     updates = Updates.objects.all().order_by( 'date' )[:4]
+    snippets = Snippets.objects.all().order_by( 'pk' )[:4] 
 
     # adding updates to the template dict
     base_vars.update({'updates':updates})
+    base_vars.update({'snippets':snippets})
     return render_to_response("home.html", base_vars  )
 
 

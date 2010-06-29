@@ -7,7 +7,7 @@ def home(request):
     base_vars = get_base_vars(request)
     
     # fetching updates and snippets
-    updates = Updates.objects.all().order_by( 'date' )[:4]
+    updates = Updates.objects.all().filter( active = True ).order_by( 'date' )[:4]
     snippets = Snippets.objects.all().order_by( 'pk' )[:4] 
 
     # adding updates to the template dict

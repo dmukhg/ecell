@@ -5,11 +5,9 @@ from models import *
 from forms import *
 
 def index( request, message = None ):
-    current_updates = Updates.objects.filter( active = True )[:4] 
-    past_updates = Updates.objects.filter( active = True )[4:]
+    updates = Updates.objects.all()
 
-    temp_vars = { 'current_updates' : current_updates ,
-                    'past_updates' : past_updates , 
+    temp_vars = { 'updates' : updates ,
                     'message' : message, 
                     'user' : request.user ,
                     }

@@ -58,6 +58,8 @@ table.admin_content_table{
 }
 td.admin_content_table{
     border-bottom:1px solid #cccccc;
+    padding-right:5px;
+    padding-left:5px;
 }
 a.admin_delete{
     color:#ff2200;
@@ -86,6 +88,11 @@ td.errors{
     border-bottom:1px solid #ff3300;
 }
 #message{
-    background-color:#ffff00;
-    color:#777777;
+    background-color:#eeeeee;
+    margin:5px;
+    padding:15px;
+    float:right;
+    width:300px;
+    border:1px solid #888888;
+    color:#555555;
 }

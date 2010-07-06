@@ -1,98 +1,62 @@
 body{
-    font-family:arial;
-    margin:0;
-    background-color:#ffffff;
+    font-family:helvetica , arial , freesans , sans , clean , sans-serif ;
+    margin:0px;
+    background:url('/site_media/im/admin_bg.png') repeat-x;
 }
-#top_bar{
-    width:100%;
-    height:50px;
-    color:#ffffff;
-    background-color:#005383;
+
+.page{
+    max-width:960px;
+    margin:auto;
 }
-#top_logo{
-    color:white;
-    font-family:sans;
+#top{
+    height:50px; 
+}
+.logo{
+    position:relative;
+    top:10px;
     font-size:15pt;
+    color:#555555 ;
+    font-weight:normal;
+}
+#admin-area{
+    padding:10px;
+    width:570px;
     float:left;
-    padding-left:10px;
-    padding-top:10px;
-    padding-right:10px;
 }
-#top_links{
+#notification-area{
+    width:340px;
     float:right;
-    padding-right:4px;
-    color:#ffff00;
-}
-#content{
-    padding:4px;
-    }
-a.top_links{
-    font-size:9pt;
-    color:#ffff00;
-    text-decoration:none;
-}
-a.top_links:hover{
-    text-decoration:underline;
-}
-.admin_container{
-    width:500px;
-    border:1px solid #cccccc;
-    background-color:#eeeeff;
-}
-.admin_heading{
-    background-color:#00659f;
-    font-family:sans;
-    font-weight;bold;
-    font-size:10pt;
-    color:#ffffff;
-    padding:1px;
-}
-.admin_content{
-    background-color:#ffffff;
-}
-table.admin_content_table{
-    font-family:arial;
-    font-size:10pt;
-    width:500px;
-    color:#555555;
-}
-td.admin_content_table{
-    border-bottom:1px solid #cccccc;
-    padding-right:5px;
-    padding-left:5px;
-}
-a.admin_delete{
-    color:#ff2200;
-    text-decoration:none;
-    font-size:9pt;
-    font-family:arial;
-}
-a.admin_delete:hover{
-    color:#ff6600;
-}
-a.admin_add{
-    color:#008833;
-    text-decoration:none;
-    font-size:9pt;
-    font-family:arial;
-}
-a.admin_add:hover{
-    color:#ff6600;
-}
-.admin_footer{
-    padding:3px;
-}
-td.errors{
-    color:#ff3300;
-    background-color:#ff9999;
-    border-bottom:1px solid #ff3300;
+    padding:10px;
 }
 #message{
-    background-color:#eeeeee;
-    margin:5px;
-    padding:15px;
-    float:right;
-    width:300px;
-    border:1px solid #888888;
-    color:#555555;
+    font-size:11pt;
+    color:#009900;
 }
+
+.admin-wrapper{
+}
+.admin-header{
+    font-size:14pt;
+    color:#444444;
+    width:auto;
+    border-bottom:1px solid #cccccc ;
+    padding-left:15px;
+    padding-bottom:4px;
+}
+.update{
+    margin-left:20px;
+    margin-right:15px;
+    padding-bottom:5px;
+    padding-top:3px;
+    border-bottom:1px solid #dddddd ;
+}
+.update-title{
+    font-weight:bold;
+}
+.green{
+    color: #187b36;
+}
+.red{
+    color: #d81212 ;
+}
+

@@ -78,7 +78,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.admin',
-    'ecell2.conman',
+    'ecell2.conman.edit',
+    'ecell2.conman.admin',
+    'ecell2.conman.core',
     'ecell2.account',
     'ecell2.upload',
 )

@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+    <head>
+ {% block meta-content %}    
+<meta name="description" content="Entrepreneurship Cell, (E-Cell), IIT Kharagpur, has been started under the aegis of SRIC with one major goal - to encourage the spirit of entrepreneurship amongst the students at IIT Kharagpur. In keeping with this goal, E-Cell will organize a series of lectures and workshop focusing on various general aspects of entrepreneurship. E-Cell will also function as a guide to students with concrete business ideas." />
+
+<meta name="keywords" content="entrepreneurship cell,ecell,entrepreneurship,iit kharagpur,iit, ecell iit,entrepreneurship iit,entrepreneurhsip kharagpur,kharagpur,kgp,entrepreneurship kgp,ecell kharagpur,ecellkgp,ecell kgp" />
+{% endblock %}
+
+       <title> ecell-iitkgp | admin interface </title>
+        <link rel='stylesheet' href="/site_media/css/admin.css">
+        <link type="image/x-icon" href="/site_media/im/favicon.png" rel="shortcut icon"/>
+        <script type="text/javascript" src="/site_media/js/jquery-1.3.2.min.js" ></script>
+        {% block head %}{% endblock %}
+    </head>
+    <body>
+        <div id='top' class='page'>
+            <div class='logo'>Admin interface : ecell-iitkgp</div>
+        </div>
+
+        <div id='content-area' class='page'>
+            <div id='admin-area'>
+                
+                <div id='updates' class='admin-wrapper'>
+                    <div id='updates-header' class='admin-header'>Updates</div>
+                    {% for update in update_list %}
+                    <div id='{{ update.pk }}-update' class='update'>
+                        <div class='update-title {% if update.active %}green{% else %}red{% endif %}'>{{ update.description }}</div>
+                        <div class='update-content'>{{ update.content }}</div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div id='notification-area' >
+                adslfjd
+            </div>
+        </div>
+    </body>
+</html>

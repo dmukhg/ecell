@@ -1,62 +1,51 @@
 from django.http import HttpResponse, HttpResponseRedirect
+from datetime import date
 from django.shortcuts import render_to_response
-from conman.models import *
+from ecell2.conman.core.models import *
 from ecell2.root_views import get_base_vars
 
-def edit_article(request , url ):
-    base_vars = get_base_vars(request)
-    url_bak = url
+def edit(request, url):
+    # checking authorisation
+    if request.user.is_authenticated() and request.user.is_staff:
+        pass
+    else:
+        return HttpResponseRedirect( '/page/not-authorised' )
 
-    if not request.user.is_staff:
-        base_vars.update({'message':'You are not authorised to edit articles. You must login as a staff member to do that.'})
-        return render_to_response("message.html", base_vars )
+    # remove trailing '/'
+    url = '/' + url.strip('/') 
+    # figure out what is to be edited.
+    calculated_type = url.split('/')[1]
+   
+    try:
+        if calculated_type == 'page':
+            editable = Page.objects.get( url=url.split('/')[2] )
+            title = editable.title
+            responseURL = '/' + '/'.join( url.split('/')[1:] )
+        elif calculated_type == 'article':
+            responseURL = '/' + '/'.join( url.split('/')[2:] )
+            for sec in  Sector.objects.all():
+                if sec.get_url() == responseURL:
+                    editable = sec.article 
+                    break
+            title = sec.name
+            editable.date = date.today()
+        else:
+            return HttpResponseRedirect('/page/page-not-found' )
+    except:
+        return HttpResponseRedirect('/page/non-existent-page' )
 
-    # check whether home page has been requested
-    if url == u'/' or url == u'':
-        base_vars.update({"message":"You cannot edit the home page. You need superuser access. Contact your sysadmin."})
-        return render_to_response("message.html", base_vars)
  
-
-    # stripping url of trainling /
-    url = url.split('/')
-
-    while url[-1] is u'':
-        del(url[-1])
-
-    # processing url_bak to make it point to article
-    url_bak = url_bak.split('/')
-    url_bak = [ item for item in url_bak if not ( ( item == u'edit') or (item == u'submit') )]
-    url_bak = '/'.join( url_bak )
-
+    # actual GET stuff  
     if request.method == "GET":
-        print url;
-        if url.__len__() is 2:
-            '''top level'''
-            text = Sector.objects.get( url = url.pop() , parent = None )
-            heading = text.name
-            text =text.article.content
+        base_vars = { 'editable' : editable.content,
+                      'title' : title,
+                      'url' : url }
 
-        else:
-            '''not top level'''
-            text = Sector.objects.get( url = url.pop() , parent = Sector.objects.get( url = url.pop() ) )
-            heading = text.name
-            text = text.article.content
-    
-        base_vars.update({'article':text, 'heading': heading, 'url': url_bak })
-        return render_to_response("editor.html" , base_vars)
-    
-    
+        return render_to_response( 'editor.html', base_vars )
 
-    elif request.method == "POST":
-        text = request.POST['elm1']
-        if url.__len__() is 3: # since u'submit' also in url
-            ''' top level '''
-            article = Sector.objects.get( url = url.pop() , parent = None ) 
-        else:
-            ''' not top level '''
-            article = Sector.objects.get( url = url.pop() , parent = Sector.objects.get( url = url.pop() ) )
-        article = article.article
-        article.content = text
-        article.save()
+    if request.method == "POST":
+        editable.content = request.POST['elm1']
+        editable.save()
+        return HttpResponseRedirect(responseURL) 
 
-        return HttpResponseRedirect(url_bak)
+

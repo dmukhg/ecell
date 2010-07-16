@@ -2,7 +2,6 @@
 
 {% block head %}
 <script type="text/javascript" src="/site_media/js/jquery-1.3.2.min.js" ></script>
-<script type="text/javascript" src="/site_media/js/tweet.js"></script>
 
 <link rel=stylesheet href="/site_media/css/article.css">
 {% endblock %}
@@ -11,7 +10,7 @@
 <div id="mast_head_wrapper" class=wrapper>
     <div id="mast_head" class=page>
         <span id="mast_heading">
-        {{ heading }}
+        {{ page.title }}
     </span>
     </div>
 </div>
@@ -34,17 +33,10 @@
         </td>
         <td id=content_area>
             {% if staff %}            
-            <div style="float:right"><a id=edit_bar
-                    href="/edit/article/{{ url }}">Edit</a></div>
+            <div style="float:right"><a id=edit_bar href="/edit/{{ url }}">Edit</a></div>
             {% endif %}
-            <div id=breadcrumbs>
-                <a href="/" class=crumb>Home</a> 
-                {% for crumb in crumbs %}
-                &gt; <a href="{{ crumb.get_url }}" class=crumb>{{ crumb.name }}</a> 
-                {% endfor %}
-            </div>
-            <div id='article' style='padding:14px'>
-                {{ article|safe }}
+            <div id="article" style="padding:14px;">
+                {{ page.content|safe }}
             </div>
         </td>
     </tr>

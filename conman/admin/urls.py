@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import *
 from ecell2 import settings
-from ecell2.conman.admin.views import *
+from views import *
 
 
 # Uncomment the next two lines to enable the admin:
@@ -10,6 +10,7 @@ from ecell2.conman.admin.views import *
 urlpatterns = patterns('',
     # Example:
      (r'^$', index ),
+     (r'^updates/?$' , updates ),
     
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
     # to INSTALLED_APPS to enable admin documentation:

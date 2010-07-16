@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Edit Articles | Ecell-IITKGP</title>
+    <title>Editing '{{ title }}' | Ecell-IITKGP</title>
     <link rel=stylesheet href="/site_media/css/editor.css">
 
 <!-- TinyMCE -->
@@ -21,7 +21,7 @@
 		theme_advanced_toolbar_location : "top",
 		theme_advanced_toolbar_align : "left",
 		theme_advanced_statusbar_location : "bottom",
-		theme_advanced_resizing : true,
+		theme_advanced_resizing : false,
 
 		// Example content CSS (should be your site CSS)
 		content_css : "/site_media/css/article.css",
@@ -46,19 +46,18 @@
 
 </head>
 <body>
-    <div id=header>
+    <div id=header class='page'>
         <img src="/site_media/im/logo.png">
-       
     </div>
 
-    <form method="post" action="/edit/submit{{url}}">
-	<div>
+    <form method="post" action="/edit{{url}}">
+	<div id='editor' class='page'>
 
 
 		<!-- Gets replaced with TinyMCE, remember HTML in a textarea should be encoded -->
 		<div>
-			<textarea id="elm1" name="elm1" rows="15" cols="80" style="width: 80%">
-                {{ article }}
+			<textarea id="elm1" name="elm1" rows="25" cols="100" style="width: 80%">
+                {{ editable }}
 			</textarea>
 		</div>
 

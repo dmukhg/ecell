@@ -11,12 +11,23 @@ body{
 #top{
     height:50px; 
 }
+.login{
+    float : right ;
+    font-size : 10pt ;
+    text-align : right ;
+}
 .logo{
     position:relative;
     top:10px;
     font-size:15pt;
     color:#555555 ;
     font-weight:normal;
+}
+a.toplinks{
+    text-decoration : underline ;
+}
+a.toplinks:hover{
+    text-decoration : none ;
 }
 #admin-area{
     padding:10px;
@@ -59,4 +70,13 @@ body{
 .red{
     color: #d81212 ;
 }
-
+table.update-form{
+    font-size : 10pt ;
+}
+.form-row{
+    vertical-align : top ;
+}
+input{
+    font-size : 10pt ;
+    font-family : helvetica ;
+}

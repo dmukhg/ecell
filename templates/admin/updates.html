@@ -1,0 +1,25 @@
+{% extends 'admin/base.html' %}
+{% block admin-area %}
+<div id='updates' class='admin-wrapper'>
+    <div id='updates-header' class='admin-header'>Updates</div>
+    {% for update in update_list %}
+    <div id='{{ update.pk }}-update' class='update'>
+        <div class='update-title {% if update.active %}green{% else %}red{% endif %}'>{{ update.description }}</div>
+        <div class='update-content'>{{ update.content }}</div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+{% block notification-area %}
+<div class='insert-update'>
+    <form action='/admin/updates/add/' method='POST'>
+        <table class='update-form' cellspacing=0 cellpadding=0 border=0>
+            {% for element in update_form %}
+            {% include 'form.html' %}
+            {% endfor %}
+            <tr class='form-row'> <td colspan=2 style='text-align:right;'><input type='submit' value='add'></td></tr>
+        </table>
+        
+    </form>
+</div>
+{% endblock %}

@@ -5,13 +5,13 @@ class Article(models.Model):
     content = models.TextField()
     frontpage = models.BooleanField(default = False)
     date = models.DateField()
-    
 
     def __unicode__(self):
         return self.title
 
     class Meta:
         db_table = "article"
+
 
 class Sector(models.Model):
     '''A collection of all categories to be reported in the top
@@ -34,7 +34,6 @@ class Sector(models.Model):
         rendered_url = u'/' + rendered_url
         return rendered_url
 
-
     class Meta:
         db_table="sector"
 
@@ -55,6 +54,7 @@ class Updates(models.Model):
     def __unicode__(self):
         return u'<Update: \' ' + self.description + '\' > '
 
+
 class Snippets( models.Model ):
     '''The home page/s should be made of snippets from various sub cateories.
     Required features:
@@ -71,3 +71,23 @@ class Snippets( models.Model ):
 
     def __unicode__( self ):
         return u'<Snippet: \' ' + self.image_filename.split('.')[0] + '\' >'
+
+
+class Page(models.Model):
+    '''
+    This model represents all such pages that have no clear parentage in 
+    the site hierarchy. Urls will be of the form
+        domain.com/pages/whatever-it-is-that-we-are-referring-to
+    To enable UTF content with ASCII URLs, title will be separate from the
+    url.
+    '''
+    title = models.CharField( max_length=200 )
+    url = models.CharField( max_length=200 )
+    content = models.TextField()
+
+    class Meta:
+        db_table = 'pages'
+    
+    def __unicode__( self ):
+        return u'<Page: \' ' + self.url + '\' >'
+

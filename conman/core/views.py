@@ -55,3 +55,18 @@ def article(request,url):
 
     # Otherwise return Http404 since no match could be found
     return render_to_response("404.html",base_vars)
+
+
+def pages(request, url):
+    base_vars = get_base_vars(request)
+
+    try:
+        page = Page.objects.get( url=url )
+        url = 'page/%s' %url
+    except:
+        page = Page.objects.get( pk=1 ) 
+        url = ''
+    finally:
+        base_vars.update({'page' : page, 'url' : url })
+        return render_to_response('pages.html', base_vars)
+

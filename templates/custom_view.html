@@ -1,0 +1,11 @@
+<table cellspacing=0 cellpadding=0 border=1>
+    {% for item in qs %}
+    <tr valign=top>
+        <td>{{ item.name }}</td>
+        <td>{{ item.rollno }}</td>
+        <td>{{ item.phno }}</td>
+        <td>{{ item.email}}</td>
+        <td>{{ item.reason }}</td>
+    </tr>
+    {% endfor %}
+</table>

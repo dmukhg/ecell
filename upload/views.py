@@ -1,8 +1,8 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
-from forms import *
-import models
-from definitions import *
+from ecell2.upload.forms import *
+from ecell2.upload import models
+from ecell2.upload.definitions import *
 
 def upload(request):
     '''Incomplete for now copy image_upload code

@@ -1,6 +1,6 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
-from models import *
+from ecell2.conman.core.models import *
 from ecell2.root_views import get_base_vars 
 
 def home(request):
@@ -66,7 +66,40 @@ def pages(request, url):
     except:
         page = Page.objects.get( pk=1 ) 
         url = ''
-    finally:
-        base_vars.update({'page' : page, 'url' : url })
-        return render_to_response('pages.html', base_vars)
+    base_vars.update({'page' : page, 'url' : url })
+    return render_to_response('pages.html', base_vars)
 
+import forms
+def pre_reg_entry(request):
+    print '1'
+    if request.method == "POST":
+        print '2'
+        form_ = forms.PreRegForm(request.POST)
+        if form_.is_valid():
+            print "SUccess"
+            entry = Pre_reg_entry(
+                    name=request.POST['name'],
+                    rollno=request.POST['rollno'],
+                    email=request.POST['email'],
+                    phno=request.POST['phno'],
+                    reason=request.POST['reason']
+                    )
+            entry.save()
+            return HttpResponseRedirect('/workshop?success=true')
+        else:
+            print '3'
+            return render_to_response('reg_entry.html', {'form':form_})
+    if request.method == 'GET':
+        print '4'
+        form_ = forms.PreRegForm()
+        if request.GET.has_key('success'):
+            print '6'
+            success = True
+        else:
+            print '5'
+            success = False
+        return render_to_response('reg_entry.html' , {'form':form_, 'success':success})
+
+def custom_view(request):
+    entry_set = Pre_reg_entry.objects.all()
+    return render_to_response('custom_view.html', {'qs':entry_set})

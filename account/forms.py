@@ -1,7 +1,7 @@
 from django.forms.util import ErrorList
 from django.contrib.auth.models import User
 from django import forms
-from choices import *
+from ecell2.account.choices import *
 
 class SignupForm(forms.Form):
      first_name=forms.CharField(max_length=25,label='First Name')

@@ -1,4 +1,4 @@
-from conman.core.models import *
+from ecell2.conman.core.models import *
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import AnonymousUser
 

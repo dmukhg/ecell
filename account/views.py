@@ -5,8 +5,8 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.contrib.auth import logout as auth_logout
 from django.forms.util import ErrorList
-import models as account_models
-from forms import *
+import ecell2.account.models as account_models
+from ecell2.account.forms import *
 
 def index(request):
     base_vars = get_base_vars(request)

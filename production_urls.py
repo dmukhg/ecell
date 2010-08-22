@@ -1,7 +1,6 @@
 from django.conf.urls.defaults import *
-import root_views
 from django.views.static import serve as stat
-from ecell2 import settings
+from ecell2 import production_settings, root_views
 
 # Uncomment the next two lines to enable the admin:
 #admin.autodiscover()
@@ -10,6 +9,7 @@ urlpatterns = patterns('',
     # Example:
     (r'^account/', include('ecell2.account.urls')),
     (r'^upload/' , include('ecell2.upload.urls')),
+    (r'^mail/', include('ecell2.mail.urls')),
     (r'^$', include('ecell2.conman.core.urls')),
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
     # to INSTALLED_APPS to enable admin documentation:
@@ -21,9 +21,9 @@ urlpatterns = patterns('',
     (r'^admin/?', include('ecell2.conman.admin.urls')),
 )
 
-if settings.DEBUG:
+if True:
 	urlpatterns += patterns('',
-            (r'^site_media/(?P<path>.*)$', stat,{'document_root': '/home/ecelldev/dev.ecell-iitkgp.org/ecell2/site_media'}),
+            (r'^site_media/(?P<path>.*)$', stat,{'document_root': '/home/ecellkgp/ecell-iitkgp.org/ecell2/site_media'}),
 	)
 
 urlpatterns += patterns('',

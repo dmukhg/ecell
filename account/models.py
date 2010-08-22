@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from ecell2.conman.core.models import *
-import choices
+import ecell2.account.choices as choices
 
 
 # Create your models here.

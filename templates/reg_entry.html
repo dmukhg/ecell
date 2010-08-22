@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Registration for workshop on 22nd August</h1>
+{% if success %}
+You have successfully registered for the workshop.
+{% else %}
+<form method='POST'>
+    <table cellspacing=0 cellpadding=0 border=0>
+        {% for item in form %}
+        <tr valign=top {% if item.errors %}style='background-color:#fbbcbc;'{% endif %}>
+            <td>{{ item.label_tag }}</td><td>{{ item }}</td><td>{{item.errors }}</td>
+        </tr>
+        {% endfor %}
+        <tr valign=top><td colspan=2><input type=submit
+                value="Submit"></td></tr>
+    </table>
+</form>
+{% endif %}
+{% endblock %}

@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-import choices 
+from ecell2.upload import choices 
 
 class upload(models.Model):
     get_file=models.FileField(upload_to="site_media/uploads/",null=False,blank=False)

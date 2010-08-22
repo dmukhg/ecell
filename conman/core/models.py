@@ -91,3 +91,12 @@ class Page(models.Model):
     def __unicode__( self ):
         return u'<Page: \' ' + self.url + '\' >'
 
+class Pre_reg_entry(models.Model):
+    name = models.CharField(max_length=30)
+    rollno = models.CharField(max_length=10)
+    email = models.EmailField(max_length=30)
+    phno = models.CharField(max_length=20)
+    reason = models.TextField()
+
+    def __unicode__(self):
+        return self.name

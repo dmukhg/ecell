@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import *
 from ecell2 import settings
-from views import *
+from ecell2.conman.admin.views import *
 
 
 # Uncomment the next two lines to enable the admin:

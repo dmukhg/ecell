@@ -1,0 +1,94 @@
+{% extends 'admin/base.html' %}
+{% block head %}
+    <title>Mail System | Ecell-IITKGP</title>
+    <link rel=stylesheet href="/site_media/css/editor.css">
+    <style>
+        ul{
+            list-style-type:none;
+        }
+    </style>
+
+<script type="text/javascript" src="/site_media/js/tiny_mce/tiny_mce.js"></script>
+<script type="text/javascript">
+	tinyMCE.init({
+		// General options
+		mode : "textareas",
+		theme : "advanced",
+		plugins : "pagebreak,style,table,save,advhr,advimage,advlink,iespell,inlinepopups,insertdatetime,searchreplace,contextmenu,paste,fullscreen,noneditable,nonbreaking,wordcount,advlist,autosave",
+
+		// Theme options
+		theme_advanced_buttons1 : "save,newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,styleselect,formatselect,fontselect,fontsizeselect",
+		theme_advanced_buttons2 : "cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor",
+		theme_advanced_buttons3 : "tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,emotions,iespell,media,advhr,|,print,|,ltr,rtl,|,fullscreen",
+		theme_advanced_buttons4 : "insertlayer,moveforward,movebackward,absolute,|,styleprops,|,cite,abbr,acronym,del,ins,attribs,|,visualchars,nonbreaking,template,pagebreak,restoredraft",
+		theme_advanced_toolbar_location : "top",
+		theme_advanced_toolbar_align : "left",
+		theme_advanced_statusbar_location : "bottom",
+		theme_advanced_resizing : false,
+
+		// Example content CSS (should be your site CSS)
+		content_css : "/site_media/css/article.css",
+
+		// Drop lists for link/image/media/template dialogs
+		//template_external_list_url : "lists/template_list.js",
+		//external_link_list_url : "lists/link_list.js",
+		//external_image_list_url : "lists/image_list.js",
+		//media_external_list_url : "lists/media_list.js",
+
+		// Style formats
+		style_formats : [
+			{title : 'Bold text', inline : 'b'},
+		],
+
+		// Replace values for the template plugin
+		template_replace_values : {
+		}
+	});
+</script>
+{% endblock %}
+
+{% block admin-area %}
+    <form method="post" action="">
+	<div id='editor' class='page'>
+
+        <table border=0>
+            <tr valign=top>
+                <td>From:</td><td><input type='text' name='from_field'><td>
+            </tr>
+            <tr>
+                <td>Subject:</td><td><input type='text' name='subject'
+                    style="width:600px;"><td>
+             </tr>
+             <tr>
+                 <td>To:</td><td>
+                         {% for elem in mlf %}
+                             {{ elem }}
+                         {% endfor %}
+                 </td>
+             </tr>
+        </table>
+		<!-- Gets replaced with TinyMCE, remember HTML in a textarea should be encoded -->
+		<div>
+			<textarea id="elm1" name="content" rows="25" cols="100" style="width: 80%">
+                {{ editable }}
+			</textarea>
+		</div>
+
+		<!-- Some integration calls 
+		<a href="javascript:;" onmousedown="tinyMCE.get('elm1').show();">[Show]</a>
+		<a href="javascript:;" onmousedown="tinyMCE.get('elm1').hide();">[Hide]</a>
+		<a href="javascript:;" onmousedown="tinyMCE.get('elm1').execCommand('Bold');">[Bold]</a>
+		<a href="javascript:;" onmousedown="alert(tinyMCE.get('elm1').getContent());">[Get contents]</a>
+		<a href="javascript:;" onmousedown="alert(tinyMCE.get('elm1').selection.getContent());">[Get selected HTML]</a>
+		<a href="javascript:;" onmousedown="alert(tinyMCE.get('elm1').selection.getContent({format : 'text'}));">[Get selected text]</a>
+		<a href="javascript:;" onmousedown="alert(tinyMCE.get('elm1').selection.getNode().nodeName);">[Get selected element]</a>
+		<a href="javascript:;" onmousedown="tinyMCE.execCommand('mceInsertContent',false,'<b>Hello world!!</b>');">[Insert HTML]</a>
+		<a href="javascript:;" onmousedown="tinyMCE.execCommand('mceReplaceContent',false,'<b>{$selection}</b>');">[Replace selection]</a>
+        -->
+		<br />
+		<input type="submit" name="save" value="Submit" />
+		<input type="reset" name="reset" value="Reset" />
+	</div>
+</form>
+{% endblock %}
+

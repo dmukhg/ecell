@@ -1,4 +1,57 @@
 {% extends 'admin/base.html' %}
+{% block head %}
+<script language="javascript">
+    $(document).ready( function() {
+        $(".admin-widget_header").hover(function() {
+            $(this).attr('class', 'admin-widget_header bg-final');
+            }, function() {
+            $(this).attr('class', 'admin-widget_header bg-first');
+        });
+        $(".admin-widget_header").click(function() {
+            var wid_name = $(this).attr('id');
+            $("#admin-widget_box_" + wid_name).slideToggle("fast");
+        });
+    });
+
+    function edit_update(hi) {
+        // do editing
+    }
+    function post_update() {
+        // do post
+    }
+
+</script>
+{% endblock %}
 {% block admin-area %}
+<div class="admin-widget_wrapper">
+    <div class="admin-widget_header bg-first" id="update">Updates</div>
+    <div class="admin-widget_box" id="admin-widget_box_update">
+        <table class="update-table" border=0 cellspacing=0 cellpadding=0>
+            {% for update in update_qs %}
+            <tr valign=middle>
+                <td class="update-field fixed-width16"><input type="checkbox" name="this"></td>
+                <td class="update-field">{{ update.short }}</td>
+                <td class="update-field fixed-width16"><a
+                        href="javascript:cas();"><img src="/site_media/im/edit.png"></td></a>
+                <td class="update-field fixed-width16"><a href="ja"><img src="/site_media/im/tick.png"></td></a>
+            </tr>
+            {% endfor %}
+       </table>
+    </div>
+</div>
+<div class="admin-widget_wrapper">
+    <div class="admin-widget_header bg-first" id="user">Users</div>
+    <div class="admin-widget_box" id="admin-widget_box_user">edit updates here</div>
+</div>
+<div class="admin-widget_wrapper">
+    <div class="admin-widget_header bg-first" id="sector">Sector</div>
+    <div class="admin-widget_box" id="admin-widget_box_sector">edit updates here</div>
+</div>
 
 {% endblock %}
+{% block notification-area %}
+<div class='notification-wrapper'>
+    <div class="notification_header bg-first">Notifications</div>
+</div>
+{% endblock %}
+

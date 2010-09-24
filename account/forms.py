@@ -38,8 +38,8 @@ class SignupForm(forms.Form):
         return data 
 
 class LoginForm(forms.Form):
-    email=forms.EmailField(max_length=25)
-    password=forms.CharField(max_length=25,widget=forms.PasswordInput,label='Password')
+    email=forms.EmailField(max_length=215)
+    password=forms.CharField(max_length=125,widget=forms.PasswordInput,label='Password')
 
     def clean(self):
         data = self.cleaned_data

@@ -91,6 +91,7 @@ class Page(models.Model):
     def __unicode__( self ):
         return u'<Page: \' ' + self.url + '\' >'
 
+
 class Pre_reg_entry(models.Model):
     name = models.CharField(max_length=30)
     rollno = models.CharField(max_length=10)
@@ -100,3 +101,22 @@ class Pre_reg_entry(models.Model):
 
     def __unicode__(self):
         return self.name
+
+
+class incu_tags(models.Model):
+    keyword = models.CharField(max_length = 20)
+    
+    
+class Incubation(models.Model):
+    name = models.CharField(max_length=50)
+    # description contains a writeup about the project and also
+    # details like contact, team etc. a separate tags module will be
+    # added to help search.
+    description = models.TextField()
+    tags = models.ManyToManyField(incu_tags)
+
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        db_table = 'incubations'

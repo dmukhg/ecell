@@ -9,7 +9,6 @@ urlpatterns = patterns('',
     # Example:
     (r'^account/', include('ecell2.account.urls')),
     (r'^upload/' , include('ecell2.upload.urls')),
-    (r'^mail/', include('ecell2.mail.urls')),
     (r'^$', include('ecell2.conman.core.urls')),
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
     # to INSTALLED_APPS to enable admin documentation:

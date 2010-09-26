@@ -1,7 +1,10 @@
 body{
-    font-family:helvetica , arial , freesans , sans , clean , sans-serif ;
+    font-family:"Lucida Sans Unicode","Helvetica Nueu",helvetica , arial , freesans , sans , clean , sans-serif ;
     margin:0px;
     background:url('/site_media/im/admin_bg.png') repeat-x;
+}
+img{
+    border:0px none;
 }
 
 .page{
@@ -35,43 +38,39 @@ a.toplinks:hover{
     float:left;
 }
 #notification-area{
-    width:340px;
-    float:right;
     padding:10px;
+    float:right;
+    width:350px;
 }
-#message{
-    font-size:11pt;
-    color:#009900;
+.admin-widget_wrapper{
+    padding:0px;
+    border:1px solid #749dc3;
+    margin-bottom:30px;
+}
+.admin-widget_header{
+    padding:6px;
+    cursor:pointer;
+    cursor:hand;
+    font-weight:bold;
+    color:#ffffff;
+}
+.bg-first{
+    background:#749dc3;
+}
+.bg-final{
+    background:#357ec3;
+}
+.admin-widget_box{
+    padding:6px;
+    background:#ffffff;
+    display:none;
 }
 
-.admin-wrapper{
-}
-.admin-header{
-    font-size:14pt;
-    color:#444444;
-    width:auto;
-    border-bottom:1px solid #cccccc ;
-    padding-left:15px;
-    padding-bottom:4px;
-}
-.update{
-    margin-left:20px;
-    margin-right:15px;
-    padding-bottom:5px;
-    padding-top:3px;
-    border-bottom:1px solid #dddddd ;
-}
-.update-title{
-    font-weight:bold;
-}
 .green{
     color: #187b36;
 }
 .red{
     color: #d81212 ;
-}
-table.update-form{
-    font-size : 10pt ;
 }
 .form-row{
     vertical-align : top ;
@@ -79,4 +78,25 @@ table.update-form{
 input{
     font-size : 10pt ;
     font-family : helvetica ;
+    border:1px solid #cccccc;
+}
+.update-table{
+    width:550px;
+}
+.fixed-width16{
+    width:16px;
+}
+.update-field{
+    padding:4px;
+    font-size:9pt;
+    border-right:1px solid #eeeeee;
+    border-bottom:1px solid #eeeeee;
+}
+.notification-wrapper{
+    border:1px solid #ededed;
+}
+.notification_header{
+    padding:6px;
+    font-weight:bold;
+    color:#ffffff;
 }

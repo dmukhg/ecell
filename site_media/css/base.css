@@ -2,6 +2,9 @@ body{
     margin:auto;
     background:#ffffff;
 }
+img{
+    border:0px none;
+}
 .wrapper{
     width:100%;
     display:block;

@@ -10,8 +10,8 @@ from ecell2.conman.admin.views import *
 urlpatterns = patterns('',
     # Example:
      (r'^$', index ),
-     (r'^updates/?$' , updates ),
      (r'^massmail/?$', massmail ),
+     (r'^incu/?', incu),
     
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
     # to INSTALLED_APPS to enable admin documentation:

@@ -113,6 +113,7 @@ class Incubation(models.Model):
     # details like contact, team etc. a separate tags module will be
     # added to help search.
     description = models.TextField()
+    published = models.BooleanField(default=True)
     tags = models.ManyToManyField(incu_tags)
 
     def __unicode__(self):

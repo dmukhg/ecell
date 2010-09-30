@@ -1,3 +1,9 @@
+a.snip{
+    text-decoration:none;
+}
+a.snip:hover{
+    text-decoration:underline;
+}
 #mast_head{
     background:url("/site_media/im/header.png");
     height:357px;
@@ -36,6 +42,10 @@
     font-weight:none;
     padding-left:10px;
     text-align:justify;
+    text-decoration:none;
     font-size:10pt;
     color:#333333;
+}
+#home_precis_content:hover{
+    color:#777777;
 }

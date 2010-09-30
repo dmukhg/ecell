@@ -28,8 +28,10 @@
                         <tr valign=top>
                     {% endifequal %}
                     <td width=295>
-                        <img src="/site_media/im/{{ snip.image_filename }}">
-                        <div id=home_precis_content>{{ snip.content }}</div>
+                        <a class='snippets' href="{{ snip.url }}">
+                            <img src="/site_media/im/{{ snip.image_filename }}">
+                            <div id=home_precis_content>{{ snip.content }}</div>
+                        </a>
                     </td>
 
                      {% ifequal 2 forloop.counter %}

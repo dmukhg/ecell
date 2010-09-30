@@ -75,18 +75,22 @@ a.toplinks:hover{
 .form-row{
     vertical-align : top ;
 }
-input{
+textarea{
+    font-size : 10pt ;
+    font-family : helvetica ;
+    border:1px solid #cccccc;
+}input{
     font-size : 10pt ;
     font-family : helvetica ;
     border:1px solid #cccccc;
 }
-.update-table{
+.table{
     width:550px;
 }
 .fixed-width16{
     width:16px;
 }
-.update-field{
+.field{
     padding:4px;
     font-size:9pt;
     border-right:1px solid #eeeeee;
@@ -94,9 +98,19 @@ input{
 }
 .notification-wrapper{
     border:1px solid #ededed;
+    padding:6px;
+    color:#555555;
 }
 .notification_header{
     padding:6px;
     font-weight:bold;
     color:#ffffff;
+}
+.msg-box{
+    padding:6px;
+    color:#666666;
+    margin-bottom:12px;
+}
+.neutral{
+    border:1px solid #3c9636;
 }

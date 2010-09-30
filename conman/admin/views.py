@@ -1,5 +1,5 @@
 from django.http import HttpResponse, HttpResponseRedirect
-from ecell2.conman.core.models import Updates
+from ecell2.conman.core.models import Updates, Incubation
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import user_passes_test
 import datetime
@@ -34,29 +34,34 @@ def getBaseContext(request):
 @user_passes_test(user_auth, login_url='/not_allowed/')
 def index(request):
     context = getBaseContext(request)
-    context.update( {'farzi':range(9)} )
+    context.update({'incu_qs':Incubation.objects.all()})
+    if request.GET.has_key('msg_id'):
+        context.update({'msg':"Successful entry of incubation"})
+
+    
     return render_to_response('admin/home.html', context) 
 
+@user_passes_test(user_auth, login_url = '/not_allowed/' )
+def incu(request):
+    if request.method == "POST":
+        post = request.POST.copy()
+        if post['pk'] == '0':
+            i = Incubation(name=post['name'], description=post['desc'])
+            i.save()
+            return HttpResponseRedirect('/admin?msg_id=2')
+        else:
+            i = Incubation.objects.get(pk=post['pk'])
+            i.name = post.has_key('name') and post['name'] or i.name
+            i.descrition = post.has_key('desc') and post['desc'] or i.description
+            if post.has_key('published'):
+                print post['published'] == '0'
+                i.published = post['published'] == '0' and False or True
+            i.save()
+            print Incubation.objects.get(pk=post['pk']).published
+            return HttpResponse('successs')
+    return index(request)
 
-@user_passes_test(user_auth, login_url='/not_allowed/')
-def updates(request):
-    context = getBaseContext(request)
-    context['update_list'] = Updates.objects.all().order_by( 'date' )[:20]
-    context['update_form'] = forms.UpdateForm()
-    return render_to_response( 'admin/updates.html' , context )
 
-
-@user_passes_test( user_auth , login_url = '/not_allowed/' )
-def manage_update( request ):
-    if request.method == 'POST' :
-        post = request.POST.deepcopy()
-        try:
-            upd = Updates.objects.get(pk=post['pk'])
-        except:
-            upd = Update.objects.create(pk=post['pk'])
-    else:
-        # request is GET
-        return HttpResponse( 'Hey GET is not Allowed here' )
 
 @user_passes_test(user_auth, login_url = '/not_allowed/' )
 def massmail(request):

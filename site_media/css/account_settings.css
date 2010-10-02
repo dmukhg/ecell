@@ -11,7 +11,7 @@
     float:left;
 }
 .account_element_static_label{
-    font-family:arial;
+    font-family:"Lucida Sans Unicode", "Lucida Sans";
     text-align:right;
     padding-right:10px;
     font-size:10pt;
@@ -19,13 +19,13 @@
     color:#444444;
 }
 .account_element_static_data{
-    font-family:arial;
+    font-family:"Lucida Sans Unicode", "Lucida Sans";
     font-size:10pt;
     font-weight:none;
     color:#0044ee;
 }
 a.account_change{
-    font-family:arial;
+    font-family:"Lucida Sans Unicode", "Lucida Sans";
     font-size:10pt;
     font-weight:none;
     text-decoration:none;
@@ -38,7 +38,7 @@ a.account_change:hover{
 
 #password_change{
     float:right;
-    font-family:arial;
+    font-family:"Lucida Sans Unicode", "Lucida Sans";
     font-size:10pt;
     color:#444444;
 }

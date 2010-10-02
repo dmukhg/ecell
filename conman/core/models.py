@@ -121,3 +121,13 @@ class Incubation(models.Model):
 
     class Meta:
         db_table = 'incubations'
+
+class nfEntry(models.Model):
+    text = models.CharField(max_length=200)
+    published = models.BooleanField(default=True)
+
+    def __unicode__(self):
+        return self.text
+
+    class Meta:
+        db_table = 'news_feed_entry'

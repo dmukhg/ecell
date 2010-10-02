@@ -1,6 +1,7 @@
 #mast_head{
     background:url("/site_media/im/article_header.png");
     height:180px;
+    text-align:right;
 }   
 #content{
 	color:#444444;
@@ -16,35 +17,32 @@
 }
 #content_area{
 	padding:7px;
-    font-family:arial;
+    font-family:"Lucida Sans Unicode", "Lucida Sans";
     font-size:10pt;
     width:500px;
     color:#444444;
 	width:635px;
     height:500px;
 }
-#mast_head{
-    text-align:right;
-    }
 #mast_heading{
-    font-family:arial;
+    font-family:"Lucida Sans Unicode", "Lucida Sans";
     font-weight:bold;
-    float:right;
     font-size:20pt;
-    color:white;
-    margin-right:20px;
-    position:relative;
-    top:85px;
+    position:absolute;
+    top:200px;
+    width:900px;
+    padding-right:36px;
+    color:#ffffff;
 }
 #edit_bar{
-    font-family:arial;
+    font-family:"Lucida Sans Unicode", "Lucida Sans";
     text-decoration:none;
     color:#ff9900;
     font-size:9pt;
     text-align:right;
 }
 a.crumb{
-    font-family:arial;
+    font-family:"Lucida Sans Unicode", "Lucida Sans";
     font-size:9pt;
     font-weight:none;
     color:#5555ff;
@@ -73,7 +71,7 @@ a.crumb:hover{
     padding-right:18px;
 }
 a.side_links{
-    font-family:arial;
+    font-family:"Lucida Sans Unicode", "Lucida Sans";
     font-weight:none;
     color:#2222ff;
     text-decoration:none;
@@ -83,7 +81,7 @@ a.side_links:hover{
     color:#ff5500;
 }
 a.side_sub_links{
-    font-family:arial;
+    font-family:"Lucida Sans Unicode", "Lucida Sans";
     font-weight:none;
     color:#888888;
     text-decoration:none;

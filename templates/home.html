@@ -1,15 +1,64 @@
 {% extends "base.html" %}
 
 {% block head %}
-<script type="text/javascript" src="/site_media/js/tweet.js"></script>
-
+<script type="text/javascript" src="/site_media/js/jquery.newsticker.js"></script>
+<script type="text/javascript">
+    $(document).ready( function() {
+        $("#news").newsticker();
+    });
+</script>
 <link rel=stylesheet href="/site_media/css/home.css">
+<link rel="stylesheet" href="/site_media/css/number_slideshow.css">
+<script src="/site_media/js/number_slideshow.js"></script>
+<script type="text/javascript">   
+  $(document).ready( function() {
+            $("#number_slideshow").number_slideshow({
+                slideshow_autoplay: 'enable',//enable disable
+                    slideshow_time_interval: '3000',
+                    slideshow_window_background_color: "#ccc",
+                    slideshow_window_padding: '1',
+                    slideshow_window_width: '936',
+                    slideshow_window_height: '357',
+                    slideshow_border_size: '1',
+                    slideshow_border_color: 'black',
+                    slideshow_show_button: 'enable',//enable disable
+                    slideshow_button_text_color: '#CCC',
+                    slideshow_button_background_color: '#333',
+                    slideshow_button_current_background_color: '#666',
+                    slideshow_button_border_color: '#000',
+                    slideshow_button_border_size: '1'
+                });
+      });
+</script>
+
 {% endblock %}
 
 {% block masthead %}
 <div id="mast_head_wrapper" class=wrapper>
     <div id="mast_head" class=page>
-        &nbsp;
+        <div id="header-container">
+        <div id="number_slideshow" class="number_slideshow">
+            <ul>
+                <li><a href="#"><img src="/site_media/im/headers/blue.png" width="936" height="357" alt="slideshow_large"/></a></li>
+                <li><a href="#"><img
+                    src="/site_media/im/headers/green.png" width="936"
+                    height="357" alt="slideshow_large"/></a></li>
+                <li><a href="#"><img
+                    src="/site_media/im/headers/gray.png" width="936"
+                    height="357" alt="slideshow_large"/></a></li>
+                <li><a href="#"><img
+                    src="/site_media/im/headers/pink.png" width="936"
+                    height="357" alt="slideshow_large"/></a></li>
+            </ul>
+            <ul class="number_slideshow_nav" style="">
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+            </ul>
+            <div style="clear: both"></div>
+        </div>
+        </div>
     </div>
 </div>
 {% endblock %}
@@ -20,6 +69,16 @@
     <tr valign=top>
         <td width=600>
             <table cellspacing=0 cellpadding=0 border=0 cols=2 width=590>
+                <tr height=14 valign=middle>
+                    <td class='news-container' colspan=3>
+                        <ul id='news' class='newsticker'>
+                            {% for nfentry in nf %}
+                              <li>{{ nfentry|safe }}</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                </tr>
+                <tr><td colspan=2 height=10></td></tr>
                 {% for snip in snippets %}
                     {% ifequal forloop.counter 1 %}
                         <tr valign=top>
@@ -50,12 +109,14 @@
         <td>
             <div id=updates-container>
                 <div id=updates-container-heading >Latest Updates</div>
+                <div id=updates-container-scrollarea >
                 {% for update in updates %}
                     <div id=updates>
                         <div id=updates-heading ><a href="{{ update.url }}" class=foot-list-head>{{ update.description }}</a></div>
                         {{ update.content|safe }}
                     </div>
                 {% endfor %}
+                </div>
             </div>
         </td>
     </tr>

@@ -9,10 +9,13 @@ def home(request):
     # fetching updates and snippets
     updates = Updates.objects.all().filter( active = True ).order_by( '-date' )[:4]
     snippets = Snippets.objects.all().order_by( 'pk' )[:4] 
+    nf = nfEntry.objects.all().filter( published = True )
 
     # adding updates to the template dict
     base_vars.update({'updates':updates})
     base_vars.update({'snippets':snippets})
+    base_vars.update({'nf':nf})
+
     return render_to_response("home.html", base_vars  )
 
 

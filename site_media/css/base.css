@@ -19,7 +19,7 @@ img{
 #top_nav{
     height:69px;
     color:#444ff;
-    font-size:10pt;
+    font-size:9pt;
     font-family:"Lucida Sans Unicode", "Lucida Sans";
     text-align:right;
 }
@@ -35,7 +35,7 @@ img{
     text-align:right;
 }
 a.topTab{
-    font-size:10pt;
+    font-size:9pt;
     color:#444444;
     font-family:"Lucida Sans Unicode", "Lucida Sans";
     padding-left:5px;
@@ -52,11 +52,11 @@ a.topTab:hover{
     border-top:1px dotted #888888;
 }
 #footer-box{
-    padding-left:20px;
+    padding-left:14px;
     float:right;
 }
 a.foot-list-head{
-    font-size:10pt;
+    font-size:9pt;
     font-weight:bold;
     color:#444444;
     text-decoration:none;
@@ -107,7 +107,7 @@ li.sub_footer{
 }
 a.menu-links{
     font-family:"Lucida Sans Unicode", "Lucida Sans";
-    font-size:10pt;
+    font-size:9pt;
     color:black;
     opacity:1;
     padding:9px;
@@ -120,7 +120,7 @@ a.menu-links:hover{
 }
 .user{
     font-weight:normal;
-    font-size:10pt;
+    font-size:9pt;
     color:#000000;
     padding-right:5px;
 }

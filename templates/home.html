@@ -14,23 +14,33 @@
   $(document).ready( function() {
             $("#number_slideshow").number_slideshow({
                 slideshow_autoplay: 'enable',//enable disable
-                    slideshow_time_interval: '3000',
-                    slideshow_window_background_color: "#ccc",
-                    slideshow_window_padding: '1',
-                    slideshow_window_width: '936',
-                    slideshow_window_height: '357',
-                    slideshow_border_size: '1',
-                    slideshow_border_color: 'black',
-                    slideshow_show_button: 'enable',//enable disable
-                    slideshow_button_text_color: '#CCC',
-                    slideshow_button_background_color: '#333',
-                    slideshow_button_current_background_color: '#666',
-                    slideshow_button_border_color: '#000',
-                    slideshow_button_border_size: '1'
-                });
+                slideshow_time_interval: '3000',
+                slideshow_window_background_color: "#ccc",
+                slideshow_window_padding: '1',
+                slideshow_window_width: '936',
+                slideshow_window_height: '357',
+                slideshow_border_size: '1',
+                slideshow_border_color: 'black',
+                slideshow_show_button: 'enable',//enable disable
+                slideshow_button_text_color: '#CCC',
+                slideshow_button_background_color: '#333',
+                slideshow_button_current_background_color: '#666',
+                slideshow_button_border_color: '#000',
+                slideshow_button_border_size: '1'
+            });
+            getTwitters('tweet', { 
+                id: 'ecellfellas', 
+                count: 3, 
+                enableLinks: true, 
+                ignoreReplies: true, 
+                clearContents: true,
+                template: '"%text%" <a href="http://twitter.com/%user_screen_name%/statuses/%id%/" class="tweet-time">%time%</a>'
+            });
       });
 </script>
-
+<script type="text/javascript" src="/site_media/js/twitter.min.js"></script>
+<script type="text/jaavscript">
+</script>
 {% endblock %}
 
 {% block masthead %}
@@ -88,7 +98,7 @@
                         <tr valign=top>
                     {% endifequal %}
                     <td width=295>
-                        <a class='snippets' href="{{ snip.url }}">
+                        <a class='snip' href="{{ snip.url }}">
                             <img src="/site_media/im/{{ snip.image_filename }}">
                             <div id=home_precis_content>{{ snip.content }}</div>
                         </a>
@@ -118,6 +128,15 @@
                     </div>
                 {% endfor %}
                 </div>
+            </div>
+            <div id=updates-container>
+                <div id=updates-container-heading>Latest Tweets</div>
+                <div id="tweet">
+                     <p>Please wait while our tweets load</p>
+                      <p><a href="http://twitter.com/ecellfellas">If you can't
+                          wait - check out what We've been
+                          twittering</a></p>
+                  </div>
             </div>
         </td>
     </tr>

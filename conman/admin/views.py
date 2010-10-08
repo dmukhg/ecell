@@ -5,7 +5,6 @@ from django.contrib.auth.decorators import user_passes_test
 import datetime
 from ecell2.conman.admin import forms
 from ecell2.conman.admin.models import *
-from django.core.mail import send_mail, EmailMultiAlternatives
 
 # Defining decorators and other generic functions
 def user_auth(user):
@@ -74,12 +73,12 @@ def massmail(request):
 
     elif request.method == 'POST':
         post = request.POST.copy()
-        mail = Mailer(content = post['content'],
+        mailer = Mailer(content = post['content'],
                       subject = post['subject'],
                       user = request.user,
                       from_field = post['from_field'],
                       )
-        mail.save()
+        mailer.save()
         #mail.to = request.POST.getlist('mList')
 
         mList = []
@@ -88,6 +87,13 @@ def massmail(request):
             if u'%d' %item.pk in request.POST.getlist('mList'):
                 mList += ( eval('[%s]' % item.mList ) )
 
+        import mail
+
+        mail.MailThread(mailer, mList, 0.5).start()
+
+        return HttpResponseRedirect('/admin/')
+
+'''
         finalList = []
         for _ in mList:
             ind = mList.index(_)
@@ -105,5 +111,4 @@ def massmail(request):
                                             [_])
                 msg.attach_alternative(mail.content,'text/html')
                 msg.send()
-
-        return HttpResponseRedirect('/admin/')
+'''

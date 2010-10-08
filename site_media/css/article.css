@@ -6,7 +6,7 @@
 #content{
 	color:#444444;
     text-align:justify;
-	font-size:11pt;
+	font-size:9pt;
 	font-family:sans;
 	font-weight:none;
 }
@@ -18,7 +18,7 @@
 #content_area{
 	padding:7px;
     font-family:"Lucida Sans Unicode", "Lucida Sans";
-    font-size:10pt;
+    font-size:9pt;
     width:500px;
     color:#444444;
 	width:635px;
@@ -59,14 +59,14 @@ a.crumb:hover{
 }
 #sidebar-item{
     margin-bottom:3px;
-    font-size:11pt;
+    font-size:10pt;
     padding:2px;
     padding-right:8px;
     border-top:1px dotted #555555;
 }
 #sidebar-subitem{
     margin-bottom:3px;
-    font-size:10pt;
+    font-size:9pt;
     padding:2px;
     padding-right:18px;
 }

@@ -26,6 +26,8 @@ class Sector(models.Model):
         return self.name
 
     def get_url(self):
+        if self.url.find("http://") == 0:
+            return self.url
         up = self
         rendered_url = self.url 
         while up.parent is not None:

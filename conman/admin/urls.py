@@ -12,6 +12,8 @@ urlpatterns = patterns('',
     (r'^$', index ),
     (r'^massmail/?$', massmail ),
     (r'^incu/?', incu),
+    (r'^chng/(?P<data_type>.*)/?', change),
+    (r'^form/(?P<data_type>.*)/?', form),
     
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
     # to INSTALLED_APPS to enable admin documentation:

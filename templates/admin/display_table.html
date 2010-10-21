@@ -1,0 +1,23 @@
+        <table class="table" border=0 cellspacing=0 cellpadding=0>
+            {% for x in qs %}
+            <tr valign=middle>
+                <td class="field fixed-width16"><input type="checkbox" name="this"></td>
+                <td class="field">{{ x }}</td>
+                <td class="field fixed-width16"><a
+                        href="javascript:cas();"><img src="/site_media/im/edit.png"></td></a>
+                {% if x.published or x.active %}
+                <td class="field fixed-width16"><a
+                        href="javascript:togglePublish('{{type}}', {{x.pk}}, 0);"><img
+                        src="/site_media/im/tick.png"></a></td>
+                {% else %}
+                 <td class="field fixed-width16"><a
+                        href="javascript:togglePublish('{{type}}', {{x.pk}}, 1);"><img
+                        src="/site_media/im/cross.png"></a></td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+            <tr valign=middle>
+                <td align=right colspan=9><a
+                        href="javascript:bootEditor('{{type}}', 0 )"><img src="/site_media/im/add.png"></a></td>
+            </tr>
+       </table>

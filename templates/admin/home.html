@@ -1,86 +1,39 @@
 {% extends 'admin/base.html' %}
 {% block head %}
+<script language="javascript" src="/site_media/js/admin.js"></script>
 <script language="javascript">
-    $(document).ready( function() {
-        $(".admin-widget_header").hover(function() {
-            $(this).attr('class', 'admin-widget_header bg-final');
-            }, function() {
-            $(this).attr('class', 'admin-widget_header bg-first');
-        });
-        $(".admin-widget_header").click(function() {
-            var wid_name = $(this).attr('id');
-            $("#admin-widget_box_" + wid_name).slideToggle("fast");
-        });
-    });
+    /* 
+    This correctly opens the required widget being asked for 
+    in the url #qualifier.Also, it uses ajax to load all the 
+    tables in their proper widgets.
+    */
+$(document).ready( function(){
+    var show=String(window.location).split('#')[1];
+    if (show==null){}
+    else{
+        $("#admin-widget_box_"+show).slideToggle("fast");
+    }
 
-    function edit_update(hi) {
-        // do editing
-    }
-    function unpublish(type, pk) {
-        jQuery.post('/admin/incu',
-                    {'pk':pk,
-                     'published':0,
-                    });
-    }
-    function AdminEditor(type, num){
-        if (type == 'incu'){
-            $("#editor").html('                                             \
-            Add an Incubation   \
-                <form action="/admin/incu" method="POST">                    \
-                    <table cellspacing=0 cellpadding=0 border=0>        \
-                        <input type="hidden" name="pk" value=' + num + '>       \
-                        <tr><td>Name</td><td><input type="text" name="name" value="" ></td>               \
-                        <tr valign=top><td>Desc</td><td><textarea rows="19" cols="34" name="desc"></textarea></td></tr>              \
-                        <tr><td colspan=2 align=right><input type="submit" value="add"></td></tr>                   \
-                </form>                                                     '
-                );
-        }
-    }
+    jQuery.get("/admin/chng/incubation",
+                function (data){
+                    $("#admin-widget_box_incubation").html(data);
+                });
+    jQuery.get("/admin/chng/update",
+                function (data){
+                    $("#admin-widget_box_update").html(data);
+                });
+});
 </script>
 {% endblock %}
 {% block admin-area %}
 <div class="admin-widget_wrapper">
     <div class="admin-widget_header bg-first" id="update">Updates</div>
     <div class="admin-widget_box" id="admin-widget_box_update">
-        <table class="table" border=0 cellspacing=0 cellpadding=0>
-            {% for update in update_qs %}
-            <tr valign=middle>
-                <td class="field fixed-width16"><input type="checkbox" name="this"></td>
-                <td class="field">{{ update.short }}</td>
-                <td class="field fixed-width16"><a
-                        href="javascript:cas();"><img src="/site_media/im/edit.png"></td></a>
-                <td class="field fixed-width16"><a href="ja"><img src="/site_media/im/tick.png"></td></a>
-            </tr>
-            {% endfor %}
-       </table>
     </div>
 </div>
 <div class="admin-widget_wrapper">
-    <div class="admin-widget_header bg-first" id="portfolio">Portfolio</div>
-    <div class="admin-widget_box" id="admin-widget_box_portfolio">
-        <table class="table" border=0 cellspacing=0 cellpadding=0>
-            {% for incu in incu_qs %}
-            <tr valign=middle>
-                <td class="field fixed-width16"><input type="checkbox" name="this"></td>
-                <td class="field">{{ incu.name }}</td>
-                <td class="field fixed-width16"><a
-                        href="javascript:cas();"><img src="/site_media/im/edit.png"></td></a>
-                {% if incu.published %}
-                <td class="field fixed-width16"><a
-                        href="javascript:unpublish('incu', {{ incu.pk}});"><img
-                        src="/site_media/im/tick.png"></a></td>
-                {% else %}
-                 <td class="field fixed-width16"><a
-                        href="javascript:publish('incu', {{ incu.pk}});"><img
-                        src="/site_media/im/cross.png"></a></td>
-                {% endif %}
-            </tr>
-            {% endfor %}
-            <tr valign=middle>
-                <td align=right colspan=9><a
-                        href="javascript:AdminEditor('incu', 0 )"><img src="/site_media/im/add.png"></a></td>
-            </tr>
-       </table>
+    <div class="admin-widget_header bg-first" id="incubation">Portfolio</div>
+    <div class="admin-widget_box" id="admin-widget_box_incubation">
     </div>
 </div>
 <!--
@@ -91,7 +44,7 @@
 -->
 {% endblock %}
 {% block notification-area %}
-<div class='msg-box neutral' id='msg-box'>
+<div class='msg-box {% ifequal msg_type -1 %}failure{% endifequal %}{% ifequal msg_type 0 %}neutral{% endifequal %}{% ifequal msg_type 1 %}success{% endifequal %}' id='msg-box'>
     {{ msg }}
 </div>
 <div class='notification-wrapper' id='editor'>

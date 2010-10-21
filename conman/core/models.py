@@ -54,7 +54,9 @@ class Updates(models.Model):
         db_table = "updates"
 
     def __unicode__(self):
-        return u'<Update: \' ' + self.description + '\' > '
+        # The return value of this function is displayed in the 
+        # admin interface as an identifier
+        return self.description
 
 
 class Snippets( models.Model ):
@@ -119,6 +121,8 @@ class Incubation(models.Model):
     tags = models.ManyToManyField(incu_tags)
 
     def __unicode__(self):
+        # The return value of this function is displayed in the 
+        # admin interface as an identifier
         return self.name
 
     class Meta:

@@ -79,7 +79,9 @@ textarea{
     font-size : 10pt ;
     font-family : helvetica ;
     border:1px solid #cccccc;
-}input{
+    width : 250px;
+}
+input{
     font-size : 10pt ;
     font-family : helvetica ;
     border:1px solid #cccccc;
@@ -112,5 +114,18 @@ textarea{
     margin-bottom:12px;
 }
 .neutral{
+    border:1px solid #d8d04c;
+    background-color:#f6f3c2;
+}
+.failure{
+    border:1px solid #d03d3d;
+    background-color:#edadad;
+}
+.success{
     border:1px solid #3c9636;
+    background-color:#a0e097;
+}
+td.form-label{
+    font-size:10pt;
+    padding-right:10px;
 }

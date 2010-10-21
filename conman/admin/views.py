@@ -35,7 +35,9 @@ def index(request):
     context = getBaseContext(request)
     context.update({'incu_qs':Incubation.objects.all()})
     if request.GET.has_key('msg_id'):
-        context.update({'msg':"Successful entry of incubation"})
+        from messages import msg
+        context.update({ 'msg' : msg[request.GET['msg_id']][1] ,
+                         'msg_type' : msg[request.GET['msg_id']][0]})
 
     
     return render_to_response('admin/home.html', context) 
@@ -53,13 +55,47 @@ def incu(request):
             i.name = post.has_key('name') and post['name'] or i.name
             i.descrition = post.has_key('desc') and post['desc'] or i.description
             if post.has_key('published'):
-                print post['published'] == '0'
-                i.published = post['published'] == '0' and False or True
+                if post['published'] == '0':
+                    i.published = False
+                else:
+                    i.published = True
             i.save()
             print Incubation.objects.get(pk=post['pk']).published
-            return HttpResponse('successs')
-    return index(request)
+            context = {'qs':Incubation.objects.all(), 'type': 'incu'}
+            return render_to_response('admin/qs_template.html', context )
+    else:
+        # if request is GET
+        context = {'qs':Incubation.objects.all(), 'type': 'incu'}
+        return render_to_response('admin/qs_template.html', context)
 
+@user_passes_test(user_auth, login_url = '/not_allowed/')
+def change(request, data_type):
+    import internals
+    handler = internals.handlers.get(data_type, None) 
+    
+    if request.method == "GET":
+        context = {'qs':handler.get('model').objects.all(), 'type':data_type}
+        return render_to_response('admin/display_table.html', context)
+    else:
+        # request is POST
+        post = request.POST.copy()
+        if post['pk'] == 0: 
+            # 0 corresponds to request for a new entry
+            entry = handler.get('model')(post) 
+            entry.save()
+            return HttpResponseRedirect('/admin?msg_id=2#'+data_type)
+        else:
+            # corresponds to request for change in entry.
+            return HttpResponse("lajsdlfjalkdjf")
+
+
+def form(request, data_type):
+    import internals
+    handler = internals.handlers.get(data_type, None)
+    
+    if request.method == "GET":
+        context = {'form':handler.get('form')(), 'formfor' : data_type}
+        return render_to_response('admin/display_form.html', context)
 
 
 @user_passes_test(user_auth, login_url = '/not_allowed/' )
@@ -81,34 +117,10 @@ def massmail(request):
         mailer.save()
         #mail.to = request.POST.getlist('mList')
 
-        mList = []
-
-        for item in MailList.objects.all():
-            if u'%d' %item.pk in request.POST.getlist('mList'):
-                mList += ( eval('[%s]' % item.mList ) )
-
         import mail
 
-        mail.MailThread(mailer, mList, 0.5).start()
+        for item in request.POST.getlist('mList'):
+            mail.MailThread(mailer, item, 0.5).start()
 
         return HttpResponseRedirect('/admin/')
 
-'''
-        finalList = []
-        for _ in mList:
-            ind = mList.index(_)
-            if ind%100 ==0:
-                finalList.append([])
-            finalList[ind/100].append(_)
-        import pprint
-        print finalList
-
-        for smallList in finalList:
-            for _ in smallList:
-                msg = EmailMultiAlternatives(mail.subject,
-                                            "",
-                                            mail.from_field,
-                                            [_])
-                msg.attach_alternative(mail.content,'text/html')
-                msg.send()
-'''

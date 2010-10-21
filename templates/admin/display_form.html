@@ -1,0 +1,15 @@
+<table cellspacing=0 cellpadding=0 border=0 width=330>
+<form action="/admin/chng/{{ formfor }}" method=POST>
+<tr valign=top>
+    <td colspan=2 align=right>{{ formfor.capitalize }}</td>
+</tr>
+{% for item in form %}
+<tr valign=top>
+    <td align=right class="form-label"><label for="id_{{item.name}}">{{ item.label|safe }}</label></td><td>{{ item }}</td>
+</tr>
+{% endfor %}
+<tr valign=top>
+    <td colspan=2 align=right><input type=submit value=submit></td>
+</tr>
+</form>
+</table>

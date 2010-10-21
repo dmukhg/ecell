@@ -1,7 +1,6 @@
 from django.forms.util import ErrorList
 from django.forms import ModelForm
 from ecell2.conman.core.models import Incubation, Updates
-from ecell2.conman.admin.models import MailList
 from django import forms
 from mailLists.index import Index
 

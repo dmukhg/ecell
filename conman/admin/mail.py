@@ -15,7 +15,7 @@ class MailThread( threading.Thread ):
         number_of_emails = 0
         f = open('conman/admin/mailLists/'+self.f+'.csv') 
         for char in f.read():
-            if char not in (',', ' '):
+            if char not in (',', ' ', '\'', '\"'):
                 email += char
             else:
                 if email is not "":
@@ -24,8 +24,8 @@ class MailThread( threading.Thread ):
                                                  self.mailer.from_field,
                                                  [email])
                     msg.attach_alternative(self.mailer.content, 'text/html')
-                    #print email 
-                    msg.send()
+                    print email 
+                    #msg.send()
                     time.sleep(self.lag)
                 email = ""
                 number_of_emails += 1

@@ -13,7 +13,7 @@ class MailThread( threading.Thread ):
     def run( self ):
         email = ""
         number_of_emails = 0
-        f = open('conman/admin/mailLists/'+self.f+'.csv') 
+        f = open('~/ecell-iitkgp.org/ecell2/conman/admin/mailLists/'+self.f+'.csv') 
         for char in f.read():
             if char not in (',', ' ', '\'', '\"'):
                 email += char

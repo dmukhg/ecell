@@ -9,13 +9,6 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASE_ENGINE = 'mysql'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-DATABASE_NAME = 'ecell2'             # Or path to database file if using sqlite3.
-DATABASE_USER = 'ecellkgp'             # Not used with sqlite3.
-DATABASE_PASSWORD = 'www-ecell'         # Not used with sqlite3.
-DATABASE_HOST = 'mysql.ecell-iitkgp.org'             # Set to empty string for localhost. Not used with sqlite3.
-DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
-
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
